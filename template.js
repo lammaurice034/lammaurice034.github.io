@@ -64,7 +64,6 @@ export function navToPath(path){
         window.location.href = path;
         return;
     }
-    path = path.toUpperCase();
     var siteNav = document.getElementById("template_nav");
     utils.xhr_fetch("/siteStruct.json", function(err, txt){
         if(!err){
