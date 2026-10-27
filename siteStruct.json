@@ -1,0 +1,12 @@
+{
+    "name": "/", "contents": [
+        {"name": "PROJECTS/", "contents": [
+            {"name": "INDEX.HTML", "displayName": "Main page"},
+            {"name": "MAHJONG_C.HTML", "displayName": "Mahjong_C"}
+        ]},
+        {"name": "INDEX.HTML", "displayName": "Main page"},
+        {"name": "ABOUT.HTML", "displayName": "About..."},
+        {"name": "CONTACT.HTML", "displayName": "Contact me!"},
+        {"name": "CREDITS.HTML", "displayName": "Credits"}
+    ]
+}

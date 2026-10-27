@@ -1,0 +1,189 @@
+:root{
+    --weather-font: "Arial", sans-serif;
+    --header-font: "Cambria", serif;
+    --text-font: "Times New Roman", serif;
+    --min-width: 36em;
+}
+
+html{
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;  
+    font-smooth: never;
+}
+
+button{
+    background-color: #124;
+    color: white;
+    padding: .5em 1em;
+    font-family: var(--header-font);
+}
+button:hover{
+    cursor: pointer;
+    background-color: #018;
+}
+
+body{
+    min-width:var(--min-width);
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--text-font), serif;
+    color: black;
+    background-image: url("/imgs/tiling/tiling1.png");
+    align-items: center;
+}
+h1, h2, h3, h4{
+    font-family: var(--header-font), sans-serif;
+    font-weight: 700;
+    margin-top: .5em;
+    margin-bottom: 0px;
+}
+
+.header{
+    font-family: var(--weather-font), serif;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+}
+.header a, .toplink{color: white; text-decoration: none;}
+.header a:visited{color: white;}
+.header a:hover, .toplink span:hover{color: gold; font-weight: 700;}
+
+.banner{
+    background: linear-gradient(to bottom, slateblue, purple);
+    width: auto;
+    height: 1.5em;
+    border-bottom: 3px double white;
+    vertical-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    padding: .25em 0px;
+    color: white;
+}
+.banner.main{
+    padding-left: 0px;
+    padding-right: 1em;
+    height: 5em;
+    background: linear-gradient(to left, #018 0%, #124 75%);
+    border-bottom: 1px solid white;
+}
+.weatherbox{
+    margin: 0px;
+    width: fit-content;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.weatherbox p{
+    white-space: nowrap;
+    margin: 0px;
+    margin-bottom: .25em;
+}
+.weatherline{
+    position: relative;
+}
+.weatherline img{
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-100%, -25%);
+}
+.weatherline p{
+    -webkit-text-stroke: 1px #018;
+    margin: 0;
+    position: relative;
+    text-align:right;
+    transform: translate(0%, 50%);
+    z-index: 2;
+    font-size: 32px; 
+    font-weight: 700; 
+}
+.toplink{
+    display: flex;
+    align-items:center;
+    font-size: 1em;
+    font-family: var(--header-font);
+    padding: .25em .5em;
+    border-right: 1px solid silver;
+}
+.toplink.right{
+    border-left: 1px solid silver;
+    border-right: 0px solid silver;
+}
+
+
+.pageLayout{
+    min-width: fit-content;
+    flex: 1;
+    margin: 0em;
+    padding: 0 0em;
+    align-items: stretch;
+    display: flex;
+    justify-content: center;
+
+}
+.pageLayout .sidebar{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0em .5em;
+    width: 12vw;
+    min-width: 8em;
+    max-width: 12em;
+    background-color: #ccd;
+    border-left: 1px solid slategray;
+    border-right: 1px solid slategray;
+}
+.pageLayout .sidebar.left{
+    align-items:center;
+}
+.pageLayout .sidebar.left span{
+    overflow-wrap: anywhere;
+}
+.pageLayout .sidebar.left span img{
+    display: inline;
+    vertical-align: middle;
+    float: left;
+    margin-right: .25em;
+}
+.pageLayout .sidebar.left span:hover{
+    cursor: pointer;
+    color: #018;
+}
+
+.pageLayout .sidebar p, .pageLayout .sidebar h1, .pageLayout .sidebar h2, .pageLayout .sidebar h3, .pageLayout .sidebar h4{
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.pageContent{
+    margin: 0px;
+    min-width: 20em;
+    max-width: 50em;
+    padding: 1em;
+    padding-top: 0em;
+    flex: 1;
+    background-color: white;
+}
+
+.footer{
+    border-top: 3px double slategray;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .5), silver);
+    padding: 0 2em;
+    height: 2em;
+    min-width: calc(var(--min-width) + 4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

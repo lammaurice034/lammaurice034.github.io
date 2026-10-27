@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>Maurice's BS</title>
+    <link rel="stylesheet" href="/template.css">
+</head>
+<body>
+<div id="sharedLayout"> </div>
+<template id="pageTemplate">
+    <h1><u>Contact me!</u></h1>
+    <br>
+    <form id="contact_form">
+        <label> Name (or alias) <br> <input id="form_name" name="name_or_alias" required style="width: 75%; min-width:25em;" /></label>
+        <br> <div style="height:.5em;"></div>
+        <label> Email <br> <input type="email" name="email" style="width: 75%; min-width:25em;" /></label>
+        <br> <div style="height:.5em;"></div>
+        <label> Message <br> <textarea id="form_text" name="message" required style="width: 75%; min-width:25em; resize: vertical;"></textarea></label>      
+        <br></br>
+        <button type="button" onclick="submitForm();"> Send </button>
+        <p id="form_status"></p>      
+    </form>
+</template>
+<style>
+    .citation{
+        padding-left: 2em; 
+        text-indent: -2em;
+        overflow-wrap: anywhere;
+    }
+</style>
+<script type="module" src = "/template.js"> </script>
+<script type="module" src="/utils.js"></script>
+<script type="module">
+    import * as utils from "/utils.js";
+    var ENDPOINT = "https://script.google.com/macros/s/AKfycbwEhX31EMUHTaKH45bQasfh1SsOex2aQv3I6YjB1hJ8oGveTLVIrUtYzl9mDdweo3Y/exec";
+    function submitForm(){
+        if(document.getElementById("form_name").value.trim()==""||document.getElementById("form_text").value.trim()==""){
+            alert("Both the name/alias and message fields are required.");
+            return;
+        }
+        var status = document.getElementById("form_status");
+        var form = document.getElementById("contact_form");
+        status.textContent = "Sending...";
+        var payload = {
+            tab: "contact",
+            fields: Object.fromEntries(new FormData(form))
+        };
+        utils.xhr_fetch(ENDPOINT, function(err, txt){
+            if(err){
+                status.textContent = "Your form was not submitted - try again.";
+            }else{
+                var data;
+                try{data=JSON.parse(txt);}
+                catch(e){
+                    status.textContent = "Server was unable to receive form - try again.";
+                    return;
+                }
+                if(data.result==="success"){
+                    status.textContent = "Form received! Thank you.";
+                    form.reset();
+                }else{status.textContent = "Something went wrong. Please try again later."}
+            }
+        },{
+            method: "POST",
+            headers:{"Content-Type":"text/plain"},
+            body: JSON.stringify(payload)
+        });
+    }
+    window.submitForm = submitForm;
+</script>
+</body>
+</html>

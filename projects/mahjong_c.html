@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>Maurice's BS</title>
+    <link rel="stylesheet" href="/template.css">
+    <script type="module" src="/utils.js"></script>
+</head>
+<body>
+<div id="sharedLayout"> </div>
+<template id="pageTemplate">
+    <h1><u>Project overview: MAHJONG_C</u></h1>
+    <i>19th October, 2026</i>.
+    <p> I made a library for Hongkong-style Mahjong bot development! <br> Along with an emulator for you to watch them play against each other or you can play against them too!</p>
+    <h3> Unnecessary Background Story</h3>
+    <p> Mahjong is gambling. Gambling is fun. It is fun because there is always risk and uncertainty involved. Which is why unlike chess,
+    Go or many other board games, you <i>probably</i> cannot solve Mahjong (I reckon, don't quote me on that). 
+    But because of this uncertainty, is there a way I can get away with playing Mahjong using a procedural algorithm?
+    Given any point in time of any game, taking all available information on the table, and formulating an answer, that might not be
+    theortically the best possible move, but still consistently be good enough that luck can take care of the rest?
+    </p>
+    <p> To find that out, I decided to set on a journey to create a (somewhat) resource-efficient bot, with a relatively simple
+       algorithm that is at least half decent. And by that I mean it can beat me consistently. This would probably be a long way to go,
+       not because I'm a pro at the game (even though I've been playing since I was 4 years of age), but rather I am quite dumb and frankly
+       not very good at developing big algorithms as such. </p>
+    <p> Nonetheless, I started with a lightweight library, with a system of storing game-related data, functions to check whether a hand is
+        a valid winning hand, etc., followed by an emulator that pitches instances of the bots (or user input) against each other, then a Java-based
+        GUI emulator, and images of the tiles and customization of graphics to make things look pretty, a system to import/export game statuses...  
+    </p>
+    <p> Soon enough I've made a crap load of infrastructure. I've streamlined the process and now you can write an algorithm, compile
+        it as a .dll or .so, drop it into the app and watch the bots play against each other, or play against them. 
+        So here, dear reader, take a look at my Github Repo and go nuts: <br>
+        <a data-url="https://github.com/lammaurice034/MAHJONC_C/" target="_blank"></a> </p>
+    <h3> Components and Functionality...</h3>
+    <p>
+    &emsp;☞ Portable C Library and SDK<br>
+    &emsp;☞ C-based game emulator <br>
+    &emsp;☞ Java-based game emulator with GUI <br>
+    &emsp;☞ Customization of settings such as minimum scoring requirements, whether flower tiles are used... <br>
+    &emsp;☞ Plugin system for loading custom bots <br>
+    &emsp;☞ 3 Integrated benchmarking bots <br>
+    &emsp;☞ Probably something else that I forgot. Check the readme file for more.
+    </p>
+    <h3> Info for Nerds</h3>
+    <p>
+    &emsp;☞ O/S: Windows or Linux. Two distributions of SDK and emulator executables included. <br>
+    &emsp;☞ Languages: C, Java (for GUI only) <br>
+    &emsp;&emsp;☞ C Standards: C99 or later. <br>
+    &emsp;&emsp;☞ (Optional) Required JRE: 1.8 or above <br>
+    &emsp;☞ Dependencies: None.
+    </p>
+    <p> For detailed documentation on both bot-development and emulator usage, reference README.ME.</p>
+    <br>
+    <div style="text-align: center;">
+        <a href="https://github.com/lammaurice034/MAHJONC_C/" target="_blank">
+            <button style="font-weight:700;">Github Link</button>
+        </a>
+    </div>
+
+</template>
+<script type="module" src = "/template.js"> </script>
+</body>
+</html>
