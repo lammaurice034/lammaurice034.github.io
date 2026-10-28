@@ -44,8 +44,10 @@ function init(){
     document.querySelectorAll('a[data-url]').forEach(function(a){
         a.href = a.dataset.url;
         a.textContent = a.dataset.url;
+        a.target= "_blank";
     });
     // other stuff
+    addPoster(document.getElementById("template_sidebar_left"), "/imgs/posters/poster1.gif", "90%");
     tick();
     setInterval(tick, 1000); //updates per 1000ms i.e. 1s
 }
@@ -54,7 +56,7 @@ export function navToPath(path){
     path = path.replace(/\/+/g, "/");
     function isFile(str) {
         var name = str.split("/").pop();
-        if (!name || name === "." || name === "..") {
+        if(!name || name === "." || name === ".."){
             return false;
         }
         return name.includes(".");
@@ -94,7 +96,7 @@ export function navToPath(path){
                     '\');"> <img src="/imgs/' + (isFile(value.name) ? "goto":"folder") +'.png" style="width:1em; height:1em;">' 
                     + (value.displayName===undefined ? value.name.toUpperCase() : value.displayName) +"</span>";
             }
-            htmlString = htmlString + '</div><br><span style="text-align:center; width:100%;" onclick="navToPath(\''
+            htmlString = htmlString + '</div><span style="text-align:center; width:100%;" onclick="navToPath(\''
                 + window.location.pathname.replace(/\/+$/, "").replace(/\/[^/]*$/, "")
                 +'\');">'+"(Back to current directory)"+"</span>";
 
@@ -115,6 +117,14 @@ export function goBack(){
     } return false;  
 }
 window.goBack = goBack;
+
+function addPoster(parent, imgsrc, width="fit-content", onclick=""){
+    var str = "<div class=\"poster\" style=\"place-items:center; display:grid; width:"+ width 
+    +"; padding:4px; background-color:#ffe; border:1px solid slategray;\"> <p onclick=\"this.parentElement.remove();\" style=\"text-align:right; width:100%; font-size:.75em;\">[X]</p>" +
+    "<div style=\"height:4px;\"></div>"+
+    "<img src=" + imgsrc + " style=\"width:100%\" onclick=\"" + onclick+ "\"></div>";
+    parent.insertAdjacentHTML("beforeend", str);
+}
 
 function tick(){
     drawClock();
