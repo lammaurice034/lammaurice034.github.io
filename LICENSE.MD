@@ -1,0 +1,3 @@
+Resources created by Maurice Lam for this website, are licensed under CC BY-NC-SA 4.0 unless stated otherwise. Third-party resources are not covered by this license and remain subject to their respective copyright and licensing terms.
+
+Please visit https://creativecommons.org/licenses/by-nc-sa/4.0/ for details regarding the license, and /credits.html for a list of external resources used on the website.

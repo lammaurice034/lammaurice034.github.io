@@ -171,7 +171,7 @@ function getWeatherImg(str){
     switch(str.trim().toLowerCase()){
         case "clear":
         case "sunny":
-            if(new Date().getHours()>=6&&new Date().getHours()<=18){
+            if(new Date().getHours()>=6&&new Date().getHours()<18){
                 return("/imgs/weather/clear_day.gif");
             }else{
                 return("/imgs/weather/clear_night.gif");

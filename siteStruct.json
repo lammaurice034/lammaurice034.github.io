@@ -4,9 +4,16 @@
             {"name": "index.html", "displayName": "Main page"},
             {"name": "mahjong_c.html", "displayName": "Mahjong_C"}
         ], "displayName": "Coding Projects"},
+        
         {"name": "articles/", "contents":[
-            
+
         ], "displayName": "Random Articles"},
+        
+        {"name": "games/", "contents":[
+            {"name": "index.html", "displayName": "Main page"},
+            {"name": "conway.html", "displayName": "Conway's Game of Life"}
+        ], "displayName": "Games"},
+        
         {"name": "index.html", "displayName": "Main page"},
         {"name": "about.html", "displayName": "About..."},
         {"name": "contact.html", "displayName": "Contact me!"},
