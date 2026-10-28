@@ -12,11 +12,11 @@
     <h1><u>Contact me!</u></h1>
     <br>
     <form id="contact_form">
-        <label> Name (or alias) <br> <input id="form_name" name="name_or_alias" required style="width: 75%; min-width:25em;" /></label>
+        <label> Name (or alias) <i>(required)</i> <br> <input id="form_name" name="name_or_alias" required style="width: 75%; min-width:25em;" /></label>
         <br> <div style="height:.5em;"></div>
         <label> Email <br> <input type="email" name="email" style="width: 75%; min-width:25em;" /></label>
         <br> <div style="height:.5em;"></div>
-        <label> Message <br> <textarea id="form_text" name="message" required style="width: 75%; min-width:25em; resize: vertical;"></textarea></label>      
+        <label> Message <i>(required)</i><br> <textarea id="form_text" name="message" required style="width: 75%; min-width:25em; resize: vertical;"></textarea></label>      
         <br></br>
         <button type="button" onclick="submitForm();"> Send </button>
         <p id="form_status"></p>      
@@ -41,6 +41,7 @@
         }
         var status = document.getElementById("form_status");
         var form = document.getElementById("contact_form");
+        status.style.color = 'black';
         status.textContent = "Sending...";
         var payload = {
             tab: "contact",
@@ -48,18 +49,21 @@
         };
         utils.xhr_fetch(ENDPOINT, function(err, txt){
             if(err){
+                status.style.color = 'red';
                 status.textContent = "Your form was not submitted - try again.";
             }else{
                 var data;
                 try{data=JSON.parse(txt);}
                 catch(e){
+                    status.style.color = 'red';
                     status.textContent = "Server was unable to receive form - try again.";
                     return;
                 }
                 if(data.result==="success"){
+                    status.style.color = 'green';
                     status.textContent = "Form received! Thank you.";
                     form.reset();
-                }else{status.textContent = "Something went wrong. Please try again later."}
+                }else{status.style.color = 'red'; status.textContent = "Something went wrong. Please try again later."}
             }
         },{
             method: "POST",

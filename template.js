@@ -1,5 +1,9 @@
 import * as utils from "/utils.js";
 
+// consts
+var tilingCount = 5;
+var posters = 1;
+
 if(document.addEventListener){
     document.addEventListener("DOMContentLoaded", loadLayout, false);
 }else if(window.attachEvent){
@@ -21,7 +25,7 @@ function init(){
     var footerHeight = document.getElementById("template_footer").getBoundingClientRect().height;
     document.getElementById("headerBuffer").style.height = headerHeight+"px";
     document.getElementById("template_pageLayout").style.minHeight = "calc(100vh - " + (headerHeight+footerHeight) + "px)";
-    document.body.style.backgroundImage = "url('/imgs/tiling/tiling" + utils.randInt(1,5) + ".png')";
+    document.body.style.backgroundImage = "url('/imgs/tiling/tiling" + utils.randInt(1,tilingCount) + ".png')";
     // weather
     var template = document.getElementById("pageTemplate");
     if (template && document.getElementById("pageContent")) {
@@ -47,7 +51,7 @@ function init(){
         a.target= "_blank";
     });
     // other stuff
-    addPoster(document.getElementById("template_sidebar_left"), "/imgs/posters/poster1.gif", "90%");
+    addPoster(document.getElementById("template_sidebar_left"), "/imgs/posters/poster" + utils.randInt(1,posters) + ".gif", "90%");
     tick();
     setInterval(tick, 1000); //updates per 1000ms i.e. 1s
 }
@@ -120,7 +124,7 @@ window.goBack = goBack;
 
 function addPoster(parent, imgsrc, width="fit-content", onclick=""){
     var str = "<div class=\"poster\" style=\"place-items:center; display:grid; width:"+ width 
-    +"; padding:4px; background-color:#ffe; border:1px solid slategray;\"> <p onclick=\"this.parentElement.remove();\" style=\"text-align:right; width:100%; font-size:.75em;\">[X]</p>" +
+    +"; padding:4px; background-color:#ffe; border:1px solid slategray;\"> <p onclick=\"this.parentElement.remove();\" style=\"cursor:pointer; text-align:right; width:100%; font-size:.75em;\">[X]</p>" +
     "<div style=\"height:4px;\"></div>"+
     "<img src=" + imgsrc + " style=\"width:100%\" onclick=\"" + onclick+ "\"></div>";
     parent.insertAdjacentHTML("beforeend", str);
