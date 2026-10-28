@@ -80,7 +80,7 @@ export function navToPath(path){
             for(var token of path.split("/")){
                 if(isFile(token)){break;}
                 if(token.trim() == ""){continue;}
-                pathString = pathString + token + " > ";
+                pathString = pathString + token.toUpperCase() + " > ";
                 json = json.contents.find(function(item){return item.name.toUpperCase()==token.toUpperCase()+"/"});
             }
             
@@ -95,7 +95,8 @@ export function navToPath(path){
 
             for(var [name, value] of Object.entries(json)){
                 htmlString = htmlString + '<div style="height: .0em;"></div>';
-                htmlString = htmlString + '<span style="text-align:left;" onclick="navToPath(\''
+                htmlString = htmlString + '<span style="text-align:left;" title="' + value.name.toUpperCase()
+                    +'" onclick="navToPath(\''
                     + path + "/" + value.name +
                     '\');"> <img src="/imgs/' + (isFile(value.name) ? "goto":"folder") +'.png" style="width:1em; height:1em;">' 
                     + (value.displayName===undefined ? value.name.toUpperCase() : value.displayName) +"</span>";
