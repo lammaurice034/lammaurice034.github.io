@@ -5,9 +5,9 @@
             {"name": "mahjong_c.html", "displayName": "Mahjong_C"}
         ], "displayName": "Coding Projects"},
         
-        {"name": "articles/", "contents":[
-
-        ], "displayName": "Random Articles"},
+        {"name": "tools/", "contents":[
+            {"name": "wednesday.html", "displayName": "Is today Wednesday?"}
+        ], "displayName": "Tools"},
         
         {"name": "games/", "contents":[
             {"name": "index.html", "displayName": "Main page"},

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>Maurice's BS</title>
+    <link rel="stylesheet" href="/template.css">
+    <script type="module" src="/utils.js"></script>
+</head>
+<body>
+<div id="sharedLayout"> </div>
+<template id="pageTemplate">
+    <h1><u> Is today Wednesday? </u></h1>
+    <br>
+    <span id="answer"> </span>
+</template>
+<script type="module" src = "/template.js"> </script>
+<script>
+    window.page_init = function(){
+        document.getElementById("answer").textContent = new Date().getDay() == 3 ? "Yes" : "No";
+    }
+</script>
+</body>
+</html>
