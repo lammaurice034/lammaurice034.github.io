@@ -473,6 +473,20 @@ export function draw7segNum(numStr, colour='#000000', height=32, colourOff = "#0
     return canvas;
 }
 
+export function getRGB(str) {
+    const element = document.createElement("div");
+    element.style.color = str;
+    document.body.appendChild(element);
+
+    const rgb = getComputedStyle(element).color
+        .match(/\d+/g)
+        .map(Number);
+
+    element.remove();
+    return rgb;
+}
+
+
 ////////////
 /* Arrays */
 ////////////
@@ -503,6 +517,169 @@ var sevenSegLookupTable = [
     [1,1,1,1,0,1,1],
     [0,0,0,0,0,0,0]
 ];
+
+export const htmlColours = [
+    // Pink colors
+    "Medium Violet Red",
+    "Deep Pink",
+    "Pale Violet Red",
+    "Hot Pink",
+    "Light Pink",
+    "Pink",
+  
+    // Red colors
+    "Dark Red",
+    "Red",
+    "Firebrick",
+    "Crimson",
+    "Indian Red",
+    "Light Coral",
+    "Salmon",
+    "Dark Salmon",
+    "Light Salmon",
+  
+    // Orange colors
+    "Orange Red",
+    "Tomato",
+    "Dark Orange",
+    "Coral",
+    "Orange",
+  
+    // Yellow colors
+    "Dark Khaki",
+    "Gold",
+    "Khaki",
+    "Peach Puff",
+    "Yellow",
+    "Pale Goldenrod",
+    "Moccasin",
+    "Papaya Whip",
+    "Light Goldenrod Yellow",
+    "Lemon Chiffon",
+    "Light Yellow",
+  
+    // Brown colors
+    "Maroon",
+    "Brown",
+    "Saddle Brown",
+    "Sienna",
+    "Chocolate",
+    "Dark Goldenrod",
+    "Peru",
+    "Rosy Brown",
+    "Goldenrod",
+    "Sandy Brown",
+    "Tan",
+    "Burlywood",
+    "Wheat",
+    "Navajo White",
+    "Bisque",
+    "Blanched Almond",
+    "Cornsilk",
+  
+    // Purple, violet, and magenta colors
+    "Indigo",
+    "Purple",
+    "Dark Magenta",
+    "Dark Violet",
+    "Dark Slate Blue",
+    "Blue Violet",
+    "Dark Orchid",
+    "Fuchsia",
+    "Slate Blue",
+    "Medium Slate Blue",
+    "Medium Orchid",
+    "Medium Purple",
+    "Orchid",
+    "Violet",
+    "Plum",
+    "Thistle",
+    "Lavender",
+  
+    // Blue colors
+    "Midnight Blue",
+    "Navy",
+    "Dark Blue",
+    "Medium Blue",
+    "Blue",
+    "Royal Blue",
+    "Steel Blue",
+    "Dodger Blue",
+    "Deep Sky Blue",
+    "Cornflower Blue",
+    "Sky Blue",
+    "Light Sky Blue",
+    "Light Steel Blue",
+    "Light Blue",
+    "Powder Blue",
+  
+    // Cyan colors
+    "Teal",
+    "Dark Cyan",
+    "Light Sea Green",
+    "Cadet Blue",
+    "Dark Turquoise",
+    "Medium Turquoise",
+    "Turquoise",
+    "Aqua",
+    "Aquamarine",
+    "Pale Turquoise",
+    "Light Cyan",
+  
+    // Green colors
+    "Dark Green",
+    "Green",
+    "Dark Olive Green",
+    "Forest Green",
+    "Sea Green",
+    "Olive",
+    "Olive Drab",
+    "Medium Sea Green",
+    "Lime Green",
+    "Lime",
+    "Spring Green",
+    "Medium Spring Green",
+    "Dark Sea Green",
+    "Medium Aquamarine",
+    "Yellow Green",
+    "Lawn Green",
+    "Chartreuse",
+    "Light Green",
+    "Green Yellow",
+    "Pale Green",
+  
+    // White colors
+    "Misty Rose",
+    "Antique White",
+    "Linen",
+    "Beige",
+    "White Smoke",
+    "Lavender Blush",
+    "Old Lace",
+    "Alice Blue",
+    "Seashell",
+    "Ghost White",
+    "Honeydew",
+    "Floral White",
+    "Azure",
+    "Mint Cream",
+    "Snow",
+    "Ivory",
+    "White",
+  
+    // Gray and black colors
+    "Black",
+    "Dark Slate Gray",
+    "Dim Gray",
+    "Slate Gray",
+    "Gray",
+    "Light Slate Gray",
+    "Dark Gray",
+    "Silver",
+    "Light Gray",
+    "Gainsboro"
+];
+
 
 export function xhr_fetch(link, callback, options = {}){
     var xhr = new XMLHttpRequest();

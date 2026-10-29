@@ -15,11 +15,15 @@ function loadLayout() {
     utils.xhr_fetch("/template.html", function(err, html){
         if(err){return;}
         document.getElementById("sharedLayout").innerHTML = html;
-        init();
+        // CALL PAGE SPECIFIC INIT() IF FOUND
+        template_init();
+        if (typeof window.page_init === "function") {
+            window.page_init();
+        }
     });
 }
 
-function init(){
+function template_init(){
     // spacing and stuff
     var headerHeight = document.getElementById("template_header").getBoundingClientRect().height;
     var footerHeight = document.getElementById("template_footer").getBoundingClientRect().height;

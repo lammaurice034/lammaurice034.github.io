@@ -41,6 +41,7 @@ h1, h2, h3, h4{
 }
 
 .header{
+    z-index:10000;
     font-family: var(--weather-font), serif;
     position: fixed;
     width: 100%;
