@@ -187,9 +187,11 @@ function getWeatherImg(str){
         case "mist":
         case "fog":
         case "freezing fog":
+        case "haze":
             return("/imgs/weather/fog.gif");
+        case "patchy rain nearby":
         case "patchy rain possible":
-        case "Patchy light drizzle":
+        case "patchy light drizzle":
         case "light drizzle":
         case "light rain":
         case "moderate rain at times":
@@ -224,6 +226,8 @@ function getWeatherImg(str){
         case "ice pellets":
         case "light sleet showers":
         case "moderate or heavy sleet showers":
+        case "light showers of ice pellets":
+        case "moderate or heavy showers of ice pellets":
             return("/imgs/weather/sleet.gif");
         case "thundery outbreaks possible":
         case "patchy light rain with thunder":

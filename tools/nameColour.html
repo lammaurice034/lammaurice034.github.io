@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>Maurice's BS</title>
+    <link rel="stylesheet" href="/template.css">
+    <script type="module" src="/utils.js"></script>
+</head>
+<body>
+<div id="sharedLayout"> </div>
+<template id="pageTemplate">
+    <h1><u> Name a colour </u></h1>
+    <p>Input the colour's RGB and we'll try to get you a name best describing the colour! </p>
+    <br>
+    <div style="display:flex;">
+    <div style="width:40%;">
+        <canvas id="canvas" width="256" height="256" style="width:100%; aspect-ratio: 1 / 1; "> </canvas>
+        <div class="slider">
+            <input type="range" min="0" max="360" value="180" class="slider" id="hue">
+        </div>
+    </div>
+    <div style="width:1em"></div>
+    <div style="width:50%">
+        <span>(Red, Green, Blue): </span>
+        <br>
+        <input type="number" id="r" name="r" value="64" min="0" max="255" step="1" style="width:5em; max-width:20%;">
+        <input type="number" id="g" name="g" value="128" min="0" max="255" step="1" style="width:5em; max-width:20%;">
+        <input type="number" id="b" name="b" value="128" min="0" max="255" step="1" style="width:5em; max-width:20%;">
+        <br> <br>
+        <span>(Hue, Saturation, Value): </span>
+        <br>
+        <input type="number" id="h" name="s" value="180" min="0" max="359" step="1" style="width:5em; max-width:20%;">
+        <input type="number" id="s" name="s" value="50" min="10" max="100" step="1" style="width:5em; max-width:20%;">
+        <input type="number" id="v" name="v" value="50" min="0" max="100" step="1" style="width:5em; max-width:20%;">
+        <br><br>
+        <b> Name of this colour: </b><br>
+        <div style="height:.5em;"></div>
+        <p id="name" style="text-align: center; width:90%; padding:.5em; font-weight: 700;"> </p>
+    </div>
+    </div>      
+</template>
+<style>
+    .slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 1em;
+        background: linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red);
+        transition: opacity .2s;
+    }
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1em; 
+    height: 1.5em; 
+    border: 1px solid black;
+    background: var(--thumb-color, cyan);
+    cursor: pointer; 
+}
+
+.slider::-moz-range-thumb {
+    width: 1em; 
+    height: 1.5em; 
+    border: 1px solid black;
+    background: var(--thumb-color, cyan);
+    cursor: pointer;
+}
+
+</style>
+<script type="module" src = "/template.js"> </script>
+<script type="module" src = "./nameColour.js"> </script>
+</body>
+</html>

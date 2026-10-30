@@ -12,7 +12,7 @@ var gen = 0;
 var mousedown = false;
 var lastClickedX = -1; var lastClickedY = -1;
 var genLabel;
-var deadColour = "Black"; var aliveColour = "White";
+var deadColour = "DarkSlateBlue"; var aliveColour = "Gold";
 window.deadColour = deadColour; window.aliveColour = aliveColour;
 
 window.page_init = function(){
@@ -32,8 +32,8 @@ window.page_init = function(){
         opt2.innerHTML = colour;
         deadDropdown.appendChild(opt2);
     });
-    deadDropdown.value = "Black";
-    aliveDropdown.value = "White";
+    deadDropdown.value = "Dark Slate Blue";
+    aliveDropdown.value = "Gold";
     document.getElementById("clearBtn").addEventListener("click", clear);
     canvas = document.getElementById("display");
     genLabel = document.getElementById("genlabel");

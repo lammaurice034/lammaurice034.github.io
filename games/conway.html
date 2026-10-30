@@ -47,6 +47,13 @@
     <br>
     <div style="display: flex; justify-content: center;"> <canvas id="display" style="aspect-ratio: 1 / 1; width:60%;"> </canvas> </div>
     <p><i>Click to draw pixels manually.</i></p>
+    <br>
+    <h3> Description </h3>
+    <p> Conway's Game of Life has a grid of pixels (64x64 for this specific emulator), of which each cell could be dead or alive. 
+        Each live cell survives into the next generation if it has 2 or 3 neighbours; and each dead cell comes to life if it has
+        exactly 3 neighbours (Rulestring: B3/S23). Neighbours here are defined as the 8 immediately surrounding cells. This emulator
+        lets you change the rules of how many cells to revive or let a cell survive into the next generation. 
+    </p>
 </template>
 <script type="module" src = "/template.js"> </script>
 <script type="module" src = "./conway.js"> </script>

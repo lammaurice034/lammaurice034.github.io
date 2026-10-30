@@ -352,7 +352,7 @@ export function drawRect(g, x, y, w, h){
     fillRect(g, x, y, w, 1);
     fillRect(g, x, y, 1, h);
     fillRect(g, x+w, y, 1, h);
-    fillRect(g, x, y+h, w, 1);
+    fillRect(g, x, y+h, w+1, 1);
 }
 
 export function textSize(g, str){
@@ -429,6 +429,71 @@ export function isInSquare(point_topleft, width, height, point){ // include poin
     return true;
 }
 
+/////////////
+/* Colours */
+/////////////
+export function rgbToStr(rgb){
+    return "#"+rgb.r.toString(16).padStart(2, "0") + rgb.g.toString(16).padStart(2, "0") + rgb.b.toString(16).padStart(2, "0");
+}
+
+
+export function getRGB(str) {
+    const element = document.createElement("div");
+    element.style.color = str;
+    document.body.appendChild(element);
+
+    const rgb = getComputedStyle(element).color
+        .match(/\d+/g)
+        .map(Number);
+
+    element.remove();
+    return rgb;
+}
+
+export function hsvToRgb(hsv){
+    hsv.h = hsv.h%360;
+    var c = hsv.v * hsv.s;
+    var x = c * (1-Math.abs((hsv.h/60)%2-1));
+    var m = hsv.v - c;
+    var rgb = {r:0, g:0, b:0};
+    switch(Math.floor(hsv.h/60)){
+        case 0: rgb = {r:c, g:x, b:0}; break;
+        case 1: rgb = {r:x, g:c, b:0}; break;
+        case 2: rgb = {r:0, g:c, b:x}; break;
+        case 3: rgb = {r:0, g:x, b:c}; break;
+        case 4: rgb = {r:x, g:0, b:c}; break;
+        case 5: rgb = {r:c, g:0, b:x}; break;
+    }
+    rgb = {r: Math.round((rgb.r+m)*255), g: Math.round((rgb.g+m)*255), b: Math.round((rgb.b+m)*255)};
+    return rgb;
+}
+
+export function rgbToHsv(rgb){
+    var r = rgb.r/255;
+    var g = rgb.g/255;
+    var b = rgb.b/255;
+    var delta = (Math.max(r,g,b) - Math.min(r,g,b));
+    var h = 0;
+    if(delta!=0){
+        if(Math.max(r,g,b)==r){
+            h = 60* (((g-b)/delta)%6);
+        }else if(Math.max(r,g,b)==g){
+            h = 60* ((b-r)/delta+2);
+        }else if(Math.max(r,g,b)==b){
+            h = 60* ((r-g)/delta+4);
+        }
+        h+=360;
+    }
+    var s = 0;
+    if(Math.max(r,g,b)!=0){s = delta / Math.max(r,g,b);}
+    return {h: Math.round(h%360), s: s, v: Math.max(r,g,b)};
+}
+
+export function getPixelColour(gr, point){
+    var [r, g, b, a] = gr.getImageData(point.x, point.y, 1, 1).data;
+    return {r:r, g:g, b:b, a:a};
+}
+
 ////////////////////////
 /* Drawing more stuff */
 ////////////////////////
@@ -472,20 +537,6 @@ export function draw7segNum(numStr, colour='#000000', height=32, colourOff = "#0
     }
     return canvas;
 }
-
-export function getRGB(str) {
-    const element = document.createElement("div");
-    element.style.color = str;
-    document.body.appendChild(element);
-
-    const rgb = getComputedStyle(element).color
-        .match(/\d+/g)
-        .map(Number);
-
-    element.remove();
-    return rgb;
-}
-
 
 ////////////
 /* Arrays */

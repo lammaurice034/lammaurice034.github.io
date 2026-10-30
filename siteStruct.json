@@ -6,7 +6,9 @@
         ], "displayName": "Coding Projects"},
         
         {"name": "tools/", "contents":[
-            {"name": "wednesday.html", "displayName": "Is today Wednesday?"}
+            {"name": "index.html", "displayName": "Main page"},
+            {"name": "wednesday.html", "displayName": "Is today Wednesday?"},
+            {"name": "nameColour.html", "displayName": "Name a colour"}
         ], "displayName": "Tools"},
         
         {"name": "games/", "contents":[
