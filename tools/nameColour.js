@@ -100,7 +100,16 @@ function click(x, y){
 }
 
 function updateName(){
-    document.getElementById("name").textContent = "WIP!";
     document.getElementById("name").style.backgroundColor = utils.rgbToStr(colour);
     document.getElementById("name").style.color = ptrY>128?'white':'black';
+    var idx = 0;
+    var dist = 1000;
+    for(var i=0; i<utils.htmlColours.length; i++){
+        var newColour = utils.htmlColoursRGB[i];
+        var newDist = Math.sqrt((newColour.r-colour.r)**2 + (newColour.g-colour.g)**2 + (newColour.b-colour.b)**2);
+        if(dist>newDist){
+            idx = i; dist = newDist; 
+        }
+    }
+    document.getElementById("name").textContent = utils.htmlColours[idx];
 }

@@ -731,6 +731,167 @@ export const htmlColours = [
     "Gainsboro"
 ];
 
+export const htmlColoursRGB = [
+    // Pink colors
+    { r: 199, g: 21, b: 133 }, // Medium Violet Red
+    { r: 255, g: 20, b: 147 }, // Deep Pink
+    { r: 219, g: 112, b: 147 }, // Pale Violet Red
+    { r: 255, g: 105, b: 180 }, // Hot Pink
+    { r: 255, g: 182, b: 193 }, // Light Pink
+    { r: 255, g: 192, b: 203 }, // Pink
+
+    // Red colors
+    { r: 139, g: 0, b: 0 }, // Dark Red
+    { r: 255, g: 0, b: 0 }, // Red
+    { r: 178, g: 34, b: 34 }, // Firebrick
+    { r: 220, g: 20, b: 60 }, // Crimson
+    { r: 205, g: 92, b: 92 }, // Indian Red
+    { r: 240, g: 128, b: 128 }, // Light Coral
+    { r: 250, g: 128, b: 114 }, // Salmon
+    { r: 233, g: 150, b: 122 }, // Dark Salmon
+    { r: 255, g: 160, b: 122 }, // Light Salmon
+
+    // Orange colors
+    { r: 255, g: 69, b: 0 }, // Orange Red
+    { r: 255, g: 99, b: 71 }, // Tomato
+    { r: 255, g: 140, b: 0 }, // Dark Orange
+    { r: 255, g: 127, b: 80 }, // Coral
+    { r: 255, g: 165, b: 0 }, // Orange
+
+    // Yellow colors
+    { r: 189, g: 183, b: 107 }, // Dark Khaki
+    { r: 255, g: 215, b: 0 }, // Gold
+    { r: 240, g: 230, b: 140 }, // Khaki
+    { r: 255, g: 218, b: 185 }, // Peach Puff
+    { r: 255, g: 255, b: 0 }, // Yellow
+    { r: 238, g: 232, b: 170 }, // Pale Goldenrod
+    { r: 255, g: 228, b: 181 }, // Moccasin
+    { r: 255, g: 239, b: 213 }, // Papaya Whip
+    { r: 250, g: 250, b: 210 }, // Light Goldenrod Yellow
+    { r: 255, g: 250, b: 205 }, // Lemon Chiffon
+    { r: 255, g: 255, b: 224 }, // Light Yellow
+
+    // Brown colors
+    { r: 128, g: 0, b: 0 }, // Maroon
+    { r: 165, g: 42, b: 42 }, // Brown
+    { r: 139, g: 69, b: 19 }, // Saddle Brown
+    { r: 160, g: 82, b: 45 }, // Sienna
+    { r: 210, g: 105, b: 30 }, // Chocolate
+    { r: 184, g: 134, b: 11 }, // Dark Goldenrod
+    { r: 205, g: 133, b: 63 }, // Peru
+    { r: 188, g: 143, b: 143 }, // Rosy Brown
+    { r: 218, g: 165, b: 32 }, // Goldenrod
+    { r: 244, g: 164, b: 96 }, // Sandy Brown
+    { r: 210, g: 180, b: 140 }, // Tan
+    { r: 222, g: 184, b: 135 }, // Burlywood
+    { r: 245, g: 222, b: 179 }, // Wheat
+    { r: 255, g: 222, b: 173 }, // Navajo White
+    { r: 255, g: 228, b: 196 }, // Bisque
+    { r: 255, g: 235, b: 205 }, // Blanched Almond
+    { r: 255, g: 248, b: 220 }, // Cornsilk
+
+    // Purple, violet, and magenta colors
+    { r: 75, g: 0, b: 130 }, // Indigo
+    { r: 128, g: 0, b: 128 }, // Purple
+    { r: 139, g: 0, b: 139 }, // Dark Magenta
+    { r: 148, g: 0, b: 211 }, // Dark Violet
+    { r: 72, g: 61, b: 139 }, // Dark Slate Blue
+    { r: 138, g: 43, b: 226 }, // Blue Violet
+    { r: 153, g: 50, b: 204 }, // Dark Orchid
+    { r: 255, g: 0, b: 255 }, // Fuchsia
+    { r: 106, g: 90, b: 205 }, // Slate Blue
+    { r: 123, g: 104, b: 238 }, // Medium Slate Blue
+    { r: 186, g: 85, b: 211 }, // Medium Orchid
+    { r: 147, g: 112, b: 219 }, // Medium Purple
+    { r: 218, g: 112, b: 214 }, // Orchid
+    { r: 238, g: 130, b: 238 }, // Violet
+    { r: 221, g: 160, b: 221 }, // Plum
+    { r: 216, g: 191, b: 216 }, // Thistle
+    { r: 230, g: 230, b: 250 }, // Lavender
+
+    // Blue colors
+    { r: 25, g: 25, b: 112 }, // Midnight Blue
+    { r: 0, g: 0, b: 128 }, // Navy
+    { r: 0, g: 0, b: 139 }, // Dark Blue
+    { r: 0, g: 0, b: 205 }, // Medium Blue
+    { r: 0, g: 0, b: 255 }, // Blue
+    { r: 65, g: 105, b: 225 }, // Royal Blue
+    { r: 70, g: 130, b: 180 }, // Steel Blue
+    { r: 30, g: 144, b: 255 }, // Dodger Blue
+    { r: 0, g: 191, b: 255 }, // Deep Sky Blue
+    { r: 100, g: 149, b: 237 }, // Cornflower Blue
+    { r: 135, g: 206, b: 235 }, // Sky Blue
+    { r: 135, g: 206, b: 250 }, // Light Sky Blue
+    { r: 176, g: 196, b: 222 }, // Light Steel Blue
+    { r: 173, g: 216, b: 230 }, // Light Blue
+    { r: 176, g: 224, b: 230 }, // Powder Blue
+
+    // Cyan colors
+    { r: 0, g: 128, b: 128 }, // Teal
+    { r: 0, g: 139, b: 139 }, // Dark Cyan
+    { r: 32, g: 178, b: 170 }, // Light Sea Green
+    { r: 95, g: 158, b: 160 }, // Cadet Blue
+    { r: 0, g: 206, b: 209 }, // Dark Turquoise
+    { r: 72, g: 209, b: 204 }, // Medium Turquoise
+    { r: 64, g: 224, b: 208 }, // Turquoise
+    { r: 0, g: 255, b: 255 }, // Aqua
+    { r: 127, g: 255, b: 212 }, // Aquamarine
+    { r: 175, g: 238, b: 238 }, // Pale Turquoise
+    { r: 224, g: 255, b: 255 }, // Light Cyan
+
+    // Green colors
+    { r: 0, g: 100, b: 0 }, // Dark Green
+    { r: 0, g: 128, b: 0 }, // Green
+    { r: 85, g: 107, b: 47 }, // Dark Olive Green
+    { r: 34, g: 139, b: 34 }, // Forest Green
+    { r: 46, g: 139, b: 87 }, // Sea Green
+    { r: 128, g: 128, b: 0 }, // Olive
+    { r: 107, g: 142, b: 35 }, // Olive Drab
+    { r: 60, g: 179, b: 113 }, // Medium Sea Green
+    { r: 50, g: 205, b: 50 }, // Lime Green
+    { r: 0, g: 255, b: 0 }, // Lime
+    { r: 0, g: 255, b: 127 }, // Spring Green
+    { r: 0, g: 250, b: 154 }, // Medium Spring Green
+    { r: 143, g: 188, b: 143 }, // Dark Sea Green
+    { r: 102, g: 205, b: 170 }, // Medium Aquamarine
+    { r: 154, g: 205, b: 50 }, // Yellow Green
+    { r: 124, g: 252, b: 0 }, // Lawn Green
+    { r: 127, g: 255, b: 0 }, // Chartreuse
+    { r: 144, g: 238, b: 144 }, // Light Green
+    { r: 173, g: 255, b: 47 }, // Green Yellow
+    { r: 152, g: 251, b: 152 }, // Pale Green
+
+    // White colors
+    { r: 255, g: 228, b: 225 }, // Misty Rose
+    { r: 250, g: 235, b: 215 }, // Antique White
+    { r: 250, g: 240, b: 230 }, // Linen
+    { r: 245, g: 245, b: 220 }, // Beige
+    { r: 245, g: 245, b: 245 }, // White Smoke
+    { r: 255, g: 240, b: 245 }, // Lavender Blush
+    { r: 253, g: 245, b: 230 }, // Old Lace
+    { r: 240, g: 248, b: 255 }, // Alice Blue
+    { r: 255, g: 245, b: 238 }, // Seashell
+    { r: 248, g: 248, b: 255 }, // Ghost White
+    { r: 240, g: 255, b: 240 }, // Honeydew
+    { r: 255, g: 250, b: 240 }, // Floral White
+    { r: 240, g: 255, b: 255 }, // Azure
+    { r: 245, g: 255, b: 250 }, // Mint Cream
+    { r: 255, g: 250, b: 250 }, // Snow
+    { r: 255, g: 255, b: 240 }, // Ivory
+    { r: 255, g: 255, b: 255 }, // White
+
+    // Gray and black colors
+    { r: 0, g: 0, b: 0 }, // Black
+    { r: 47, g: 79, b: 79 }, // Dark Slate Gray
+    { r: 105, g: 105, b: 105 }, // Dim Gray
+    { r: 112, g: 128, b: 144 }, // Slate Gray
+    { r: 128, g: 128, b: 128 }, // Gray
+    { r: 119, g: 136, b: 153 }, // Light Slate Gray
+    { r: 169, g: 169, b: 169 }, // Dark Gray
+    { r: 192, g: 192, b: 192 }, // Silver
+    { r: 211, g: 211, b: 211 }, // Light Gray
+    { r: 220, g: 220, b: 220 }, // Gainsboro
+];
 
 export function xhr_fetch(link, callback, options = {}){
     var xhr = new XMLHttpRequest();
