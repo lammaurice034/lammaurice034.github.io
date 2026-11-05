@@ -1,4 +1,5 @@
 import * as utils from "/utils.js";
+var root = getComputedStyle(document.documentElement);
 
 var playing = false;
 var pixels = [];
@@ -12,7 +13,8 @@ var gen = 0;
 var mousedown = false;
 var lastClickedX = -1; var lastClickedY = -1;
 var genLabel;
-var deadColour = "DarkSlateBlue"; var aliveColour = "Gold";
+var deadColour = root.getPropertyValue('--bg-colour2-tint').trim(); 
+var aliveColour = root.getPropertyValue('--accent-colour1').trim();
 window.deadColour = deadColour; window.aliveColour = aliveColour;
 
 window.page_init = function(){
@@ -31,9 +33,10 @@ window.page_init = function(){
         opt2.style.backgroundColor = colour.replaceAll(" ", "");
         opt2.innerHTML = colour;
         deadDropdown.appendChild(opt2);
+        console.log(aliveColour);
+        if(colour.replaceAll(" ","").toLowerCase()==aliveColour.toLowerCase()){aliveDropdown.value = colour;}
+        if(colour.replaceAll(" ","").toLowerCase()==deadColour.toLowerCase()){deadDropdown.value = colour;}
     });
-    deadDropdown.value = "Dark Slate Blue";
-    aliveDropdown.value = "Gold";
     document.getElementById("clearBtn").addEventListener("click", clear);
     canvas = document.getElementById("display");
     genLabel = document.getElementById("genlabel");

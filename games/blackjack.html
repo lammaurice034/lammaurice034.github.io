@@ -11,6 +11,28 @@
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
     <h2>under construction...</h2>
+    <p>
+        <span id="bank"></span>
+        <label for="bet"> Bet amount:</label>
+        <input type="number" id="bet" name="bet" value="10" min="1" max="1000" step="1" style="width:5em;">
+        <button id="betbtn" onclick="btn_bet();"> PLACE BET </button>
+        <style>
+            #betbtn{
+                color:black; 
+                font-weight: 700;
+                background-color:var(--accent-colour1);
+            }
+            #betbtn:hover{
+                background-color:var(--accent-colour1-tint);
+            }
+        </style> 
+    </p>
+    <p>
+        <button id="hit" onclick="btn_hit();"> Hit </button> 
+        <button id="stand" onclick="btn_stand();"> Stand </button>
+        <button id="doubleDown" onclick="btn_doubleDown();"> Double Down </button> 
+        <button id="split" onclick="btn_split();"> Split </button>
+    </p>
 </template>
 <script type="module" src = "/template.js"> </script>
 <script type="module" src = "./blackjack.js"> </script>

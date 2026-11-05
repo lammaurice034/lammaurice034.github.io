@@ -13,7 +13,8 @@
         
         {"name": "games/", "contents":[
             {"name": "index.html", "displayName": "Main page"},
-            {"name": "conway.html", "displayName": "Conway's Game of Life"}
+            {"name": "conway.html", "displayName": "Conway's Game of Life"},
+            {"name": "blackjack.html", "displayName": "Blackjack+"}
         ], "displayName": "Games"},
         
         {"name": "index.html", "displayName": "Main page"},

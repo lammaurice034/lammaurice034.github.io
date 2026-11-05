@@ -1,4 +1,5 @@
 import * as utils from "/utils.js";
+var root = getComputedStyle(document.documentElement);
 
 // consts
 var tilingCount = 5;
@@ -29,7 +30,27 @@ function template_init(){
     var footerHeight = document.getElementById("template_footer").getBoundingClientRect().height;
     document.getElementById("headerBuffer").style.height = headerHeight+"px";
     document.getElementById("template_pageLayout").style.minHeight = "calc(100vh - " + (headerHeight+footerHeight) + "px)";
-    document.body.style.backgroundImage = "url('/imgs/tiling/tiling" + utils.randInt(1,tilingCount) + ".png')";
+    var tileimg = new Image();
+    tileimg.src = "/imgs/tiling/tiling" + utils.randInt(1,tilingCount) + ".png";
+    tileimg.onload = function(){
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = tileimg.width;
+        canvas.height = tileimg.height;
+        utils.drawImg(ctx, tileimg, {x: 0, y: 0});
+        for(var i=0; i<canvas.width; i++){
+            for(var j=0; j<canvas.height; j++){
+                var px = utils.getPixelColour(ctx, {x:i, y:j});
+                if(px.r==255&&px.g==255&&px.b==255){
+                    utils.setDrawingColour(ctx, root.getPropertyValue('--colour-white').trim());
+                }else if(px.r==204&&px.g==204&&px.b==221){
+                    utils.setDrawingColour(ctx, root.getPropertyValue('--bg-colour-light').trim());
+                }
+                utils.drawPixel(ctx, {x:i, y:j});
+            }
+        }
+        document.body.style.backgroundImage = `url(${canvas.toDataURL()})`;
+    }
     // weather
     var template = document.getElementById("pageTemplate");
     if (template && document.getElementById("pageContent")) {
@@ -129,7 +150,7 @@ window.goBack = goBack;
 
 function addPoster(parent, imgsrc, width="fit-content", onclick=""){
     var str = "<div class=\"poster\" style=\"place-items:center; display:grid; width:"+ width 
-    +"; padding:4px; background-color:#ffe; border:1px solid slategray;\"> <p onclick=\"this.parentElement.remove();\" style=\"cursor:pointer; text-align:right; width:100%; font-size:.75em;\">[X]</p>" +
+    +"; padding:4px; background-color:var(--accent-bg1); border:1px solid var(--colour-darkgrey);\"> <p onclick=\"this.parentElement.remove();\" style=\"cursor:pointer; text-align:right; width:100%; font-size:.75em;\">[X]</p>" +
     "<div style=\"height:4px;\"></div>"+
     "<img src=" + imgsrc + " style=\"width:100%\" onclick=\"" + onclick+ "\"></div>";
     parent.insertAdjacentHTML("beforeend", str);
@@ -149,17 +170,17 @@ function template_colonise(){
     audio.loop = true;
     audio.play();
     pageContent.insertAdjacentHTML("beforeend", 
-        '<span style="width:100%; text-align:center; font-size:2.5em; font-family: Impact,sans-serif; -webkit-text-stroke: 1px white; color: black; font-weight:900;"> <b>PLEASE EXCUSE THE INTERRUPTION OF YOUR WEBSITE NAVIGATION</b> </span>' + 
+        '<span style="width:100%; text-align:center; font-size:2.5em; font-family: Impact,sans-serif; -webkit-text-stroke: 1px var(--colour-white); color: var(--colour-black); font-weight:900;"> <b>PLEASE EXCUSE THE INTERRUPTION OF YOUR WEBSITE NAVIGATION</b> </span>' + 
         '<span style="flex:1"> </span>' +
-        '<span style="width:100%; text-align:center; font-size:2.5em; font-family: Impact,sans-serif; -webkit-text-stroke: 1px white; color: black; font-weight:900;"> <b>THIS FILE HAS BEEN COLONISED</b> </span>' +
-        '<span style="width:100%; text-align:center; 1px white; color: black; font-weight:900;"> <b>(Reload page to continue)</b> </span>'
+        '<span style="width:100%; text-align:center; font-size:2.5em; font-family: Impact,sans-serif; -webkit-text-stroke: 1px var(--colour-white); color: var(--colour-black); font-weight:900;"> <b>THIS FILE HAS BEEN COLONISED</b> </span>' +
+        '<span style="width:100%; text-align:center; 1px var(--colour-white); color: var(--colour-black); font-weight:900;"> <b>(Reload page to continue)</b> </span>'
     );
 }
 window.template_colonise = template_colonise;
 
 function template_mitosis(){
     var pageContent = document.getElementById("template_links_left");
-    pageContent.insertAdjacentHTML('beforeend', '<div class = "toplink right"> <span onclick="template_mitosis();" title="Mitosis button"> Mitosis </span> </div>');
+    pageContent.insertAdjacentHTML('beforeend', '<div class = "toplink right"> <span onclick="template_mitosis();" title="Mitosis button" style="cursor:pointer;"> Mitosis </span> </div>');
 }
 window.template_mitosis = template_mitosis;
 
@@ -246,7 +267,7 @@ function drawClock(){
     clock.height = clock.width;
     var ctx = utils.imgGetGraphics(clock);
     utils.clear(ctx);
-    utils.setDrawingColour(ctx, 'black');
+    utils.setDrawingColour(ctx, root.getPropertyValue('--colour-black').trim());
     var sideLength = Math.tan(Math.PI/12)*clock.width-2;
     var pt = {x: clock.width/2-sideLength/2, y: 2};
     var outlineArr = new Array(12);
@@ -254,9 +275,9 @@ function drawClock(){
         outlineArr[i] = pt;
         pt = utils.pixel_translate_polar(pt, Math.PI/6*i, sideLength);
     }
-    utils.setDrawingColour(ctx, 'white');
+    utils.setDrawingColour(ctx, root.getPropertyValue('--colour-white').trim());
     utils.drawPolygon(ctx, outlineArr, 0);
-    utils.setDrawingColour(ctx, 'black');
+    utils.setDrawingColour(ctx, root.getPropertyValue('--colour-black').trim());
     utils.drawPolygon(ctx, outlineArr, 3);
     var origin = {x: clock.width/2, y: clock.width/2};
     var now = new Date();

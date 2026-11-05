@@ -3,6 +3,19 @@
     --header-font: "Cambria", serif;
     --text-font: "Times New Roman", serif;
     --min-width: 36em;
+
+    --colour-white: white;
+    --colour-lightgrey: silver;
+    --colour-darkgrey: slategrey;
+    --colour-black: black;
+    --bg-colour1: #124;
+    --bg-colour1-tint: #018;
+    --bg-colour2: purple; /* leave bg colour 2 and its tint a colour in html, i.e. with a name*/
+    --bg-colour2-tint: slateblue; 
+    --bg-colour-light: #ccd;
+    --accent-colour1: gold;
+    --accent-colour1-tint: yellow;
+    --accent-bg1: #ffe;
 }
 
 html{
@@ -14,14 +27,14 @@ html{
 }
 
 button{
-    background-color: #124;
-    color: white;
+    background-color: var(--bg-colour1);
+    color: var(--colour-white);
     padding: .5em 1em;
     font-family: var(--header-font);
 }
 button:hover{
     cursor: pointer;
-    background-color: #018;
+    background-color: var(--bg-colour1-tint);
 }
 
 body{
@@ -29,8 +42,8 @@ body{
     margin: 0px;
     padding: 0px;
     font-family: var(--text-font), serif;
-    color: black;
-    background-image: url("/imgs/tiling/tiling1.png");
+    color: var(--colour-black);
+    background-color: var(--colour-lightgrey);
     align-items: center;
 }
 h1, h2, h3, h4{
@@ -49,29 +62,29 @@ h1, h2, h3, h4{
     left: 0;
     font-size: 16px;
 }
-.header a, .toplink{color: white; text-decoration: none;}
-.header a:visited{color: white;}
-.header a:hover, .toplink span:hover{color: gold; font-weight: 700;}
+.header a, .toplink{color: var(--colour-white); text-decoration: none;}
+.header a:visited{color: var(--colour-white);}
+.header a:hover, .toplink span:hover{color: var(--accent-colour1); font-weight: 700;}
 
 .banner{
-    background: linear-gradient(to bottom, slateblue, purple);
+    background: linear-gradient(to bottom, var(--bg-colour2-tint), var(--bg-colour2));
     width: auto;
     height: 1.5em;
-    border-bottom: 3px double white;
+    border-bottom: 3px double var(--colour-white);
     vertical-align: center;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: stretch;
     padding: .25em 0px;
-    color: white;
+    color: var(--colour-white);
 }
 .banner.main{
     padding-left: 0px;
     padding-right: 1em;
     height: 5em;
-    background: linear-gradient(to left, #018 0%, #124 75%);
-    border-bottom: 1px solid white;
+    background: linear-gradient(to left, var(--bg-colour1-tint) 0%, var(--bg-colour1) 75%);
+    border-bottom: 1px solid var(--colour-white);
 }
 .weatherbox{
     margin: 0px;
@@ -98,7 +111,7 @@ h1, h2, h3, h4{
     transform: translate(-100%, -25%);
 }
 .weatherline p{
-    -webkit-text-stroke: 1px #018;
+    -webkit-text-stroke: 1px var(--bg-colour1-tint);
     margin: 0;
     position: relative;
     text-align:right;
@@ -113,11 +126,11 @@ h1, h2, h3, h4{
     font-size: 1em;
     font-family: var(--header-font);
     padding: .25em .5em;
-    border-right: 1px solid silver;
+    border-right: 1px solid var(--colour-lightgrey);
 }
 .toplink.right{
-    border-left: 1px solid silver;
-    border-right: 0px solid silver;
+    border-left: 1px solid var(--colour-lightgrey);
+    border-right: 0px solid var(--colour-lightgrey);
 }
 
 
@@ -139,9 +152,9 @@ h1, h2, h3, h4{
     width: 12vw;
     min-width: 8em;
     max-width: 12em;
-    background-color: #ccd;
-    border-left: 1px solid slategray;
-    border-right: 1px solid slategray;
+    background-color: var(--bg-colour-light);
+    border-left: 1px solid var(--colour-darkgrey);
+    border-right: 1px solid var(--colour-darkgrey);
 }
 .pageLayout .sidebar.left{
     align-items:center;
@@ -157,7 +170,7 @@ h1, h2, h3, h4{
 }
 .pageLayout .sidebar.left span:hover{
     cursor: pointer;
-    color: #018;
+    color: var(--bg-colour1-tint);
 }
 
 .pageLayout .sidebar p, .pageLayout .sidebar h1, .pageLayout .sidebar h2, .pageLayout .sidebar h3, .pageLayout .sidebar h4{
@@ -175,12 +188,12 @@ h1, h2, h3, h4{
     padding: 1em;
     padding-top: 0em;
     flex: 1;
-    background-color: white;
+    background-color: var(--colour-white);
 }
 
 .footer{
-    border-top: 3px double slategray;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, .5), silver);
+    border-top: 3px double var(--colour-darkgrey);
+    background: linear-gradient(to bottom, rgb(from var(--colour-white) r g b / 0.5), var(--colour-lightgrey));
     padding: 0 2em;
     height: 2em;
     min-width: calc(var(--min-width) + 4px);
