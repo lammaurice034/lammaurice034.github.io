@@ -1,6 +1,15 @@
 import * as utils from "/utils.js";
+import { minContentHeight } from "/template.js";
 
 window.page_init = function(){
+    var left = document.getElementById("leftpanel");
+    var right = document.getElementById("rightpanel");
+    left.style.minHeight = "calc(" + minContentHeight +" - 7em)";
+    console.log(minContentHeight);
+    const observer = new ResizeObserver(function(){
+        right.style.height = left.offsetHeight + "px";
+    });
+    observer.observe(left);
     //tick();
     //setInterval(tick, 1000); //updates per 1000ms i.e. 1s
 }

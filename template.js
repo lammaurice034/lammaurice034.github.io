@@ -24,12 +24,15 @@ function loadLayout() {
     });
 }
 
+export var minContentHeight = "";
+
 function template_init(){
     // spacing and stuff
     var headerHeight = document.getElementById("template_header").getBoundingClientRect().height;
     var footerHeight = document.getElementById("template_footer").getBoundingClientRect().height;
     document.getElementById("headerBuffer").style.height = headerHeight+"px";
     document.getElementById("template_pageLayout").style.minHeight = "calc(100vh - " + (headerHeight+footerHeight) + "px)";
+    minContentHeight = "calc(100vh - " + (headerHeight+footerHeight) + "px)";
     var tileimg = new Image();
     tileimg.src = "/imgs/tiling/tiling" + utils.randInt(1,tilingCount) + ".png";
     tileimg.onload = function(){

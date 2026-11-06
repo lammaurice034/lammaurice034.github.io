@@ -10,11 +10,14 @@
 <body>
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
-    <h2>under construction...</h2>
+    <h1> <u>Blackjack+</u> </h1> <br>
+    <div style="display:flex; align-items:stretch; position:relative; padding: 0px; margin: 0px; border-top: 1px solid var(--colour-darkgrey); ">
+    <div id="leftpanel" style="width:75%; height:fit-content;">
     <p>
-        <span id="bank"></span>
+        <span id="bank"> Bank: $100 </span>
         <label for="bet"> Bet amount:</label>
         <input type="number" id="bet" name="bet" value="10" min="1" max="1000" step="1" style="width:5em;">
+    
         <button id="betbtn" onclick="btn_bet();"> PLACE BET </button>
         <style>
             #betbtn{
@@ -26,6 +29,7 @@
                 background-color:var(--accent-colour1-tint);
             }
         </style> 
+        
     </p>
     <p>
         <button id="hit" onclick="btn_hit();"> Hit </button> 
@@ -33,6 +37,40 @@
         <button id="doubleDown" onclick="btn_doubleDown();"> Double Down </button> 
         <button id="split" onclick="btn_split();"> Split </button>
     </p>
+    <div style="overflow-y:auto;">
+    <canvas id="canvas" style="width: 95%; height: 10em; border:3px solid red"> </canvas>
+    </div>    
+    </div>
+    <div id="rightpanel" style="width:25%; overflow-y:auto; border-left:1px solid var(--colour-darkgrey); padding-left:.5em; padding-right:.5em; margin-top: .5em;">
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+        <h3> List of available cards </h3>
+    </div>
+    </div>
+    
 </template>
 <script type="module" src = "/template.js"> </script>
 <script type="module" src = "./blackjack.js"> </script>
