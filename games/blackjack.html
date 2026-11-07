@@ -10,64 +10,49 @@
 <body>
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
-    <h1> <u>Blackjack+</u> </h1> <br>
+    <h1> <u>Blackjack+</u> </h1> Now with a copious amount of customisation! <br><br>
+    
     <div style="display:flex; align-items:stretch; position:relative; padding: 0px; margin: 0px; border-top: 1px solid var(--colour-darkgrey); ">
     <div id="leftpanel" style="width:75%; height:fit-content;">
-    <p>
-        <span id="bank"> Bank: $100 </span>
-        <label for="bet"> Bet amount:</label>
-        <input type="number" id="bet" name="bet" value="10" min="1" max="1000" step="1" style="width:5em;">
-    
+    <br>
+    <div style="display:flex;">
+        <div style="width:calc(100% - 8em)">
+            <span id="bank"> Bank: $100 </span>
+            <br>
+            <label for="bet"> Bet amount ($):</label>
+            <input type="number" id="bet" name="bet" value="10" min="1" max="1000" step="1" style="width:5em;">
+        </div>
         <button id="betbtn" onclick="btn_bet();"> PLACE BET </button>
         <style>
             #betbtn{
-                color:black; 
+                width: 8em;
+                color: var(--colour-black);
                 font-weight: 700;
                 background-color:var(--accent-colour1);
             }
             #betbtn:hover{
                 background-color:var(--accent-colour1-tint);
             }
+            #betbtn:disabled{
+                background-color: var(--accent-bg1);
+                color: var(--colour-lightgrey);
+                cursor: not-allowed;
+            }
         </style> 
-        
-    </p>
+    </div>
     <p>
         <button id="hit" onclick="btn_hit();"> Hit </button> 
         <button id="stand" onclick="btn_stand();"> Stand </button>
         <button id="doubleDown" onclick="btn_doubleDown();"> Double Down </button> 
         <button id="split" onclick="btn_split();"> Split </button>
     </p>
+    <div style="border-top: 1px solid var(--colour-lightgrey); width:95%; padding-bottom: .5em; padding-top:0px;"></div>
     <div style="overflow-y:auto;">
-    <canvas id="canvas" style="width: 95%; height: 10em; border:3px solid red"> </canvas>
+    <div id="maindiv" style="width: 95%; min-height: 5em; height:fit-content;"> </div>
     </div>    
     </div>
     <div id="rightpanel" style="width:25%; overflow-y:auto; border-left:1px solid var(--colour-darkgrey); padding-left:.5em; padding-right:.5em; margin-top: .5em;">
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
-        <h3> List of available cards </h3>
+        <h3> Game Settings </h3>
     </div>
     </div>
     

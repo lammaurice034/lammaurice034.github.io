@@ -118,7 +118,7 @@ function play(){
     var timer = setInterval(function(){
         if(!playing){clearInterval(timer);}
         nextGen();
-    }, document.getElementById("speed").value);
+    }, Math.max(Math.min(document.getElementById("speed").max, document.getElementById("speed").value), document.getElementById("speed").min));
 }
 
 function step(){

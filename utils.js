@@ -551,9 +551,9 @@ export function arr_remove(arr, idx){
     return newArr;
 }
 
-///////////////////
-/* Lookup tables */
-///////////////////
+//////////
+/* Misc */
+//////////
 
 var sevenSegLookupTable = [
     [1,1,1,1,1,1,0],
@@ -910,4 +910,10 @@ export function xhr_fetch(link, callback, options = {}){
         }
     }
     xhr.send(options.body ?? null);
+}
+
+export function emToPx(element, emValue) {
+    const fontSizeString = window.getComputedStyle(element).fontSize;
+    const baseFontSize = parseFloat(fontSizeString);
+    return emValue * baseFontSize;
 }

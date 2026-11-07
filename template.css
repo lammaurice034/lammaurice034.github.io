@@ -36,6 +36,10 @@ button:hover{
     cursor: pointer;
     background-color: var(--bg-colour1-tint);
 }
+button:disabled{
+    background-color: var(--colour-darkgrey);
+    cursor: not-allowed;
+}
 
 body{
     min-width:var(--min-width);

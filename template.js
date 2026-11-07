@@ -18,7 +18,7 @@ function loadLayout() {
         document.getElementById("sharedLayout").innerHTML = html;
         // CALL PAGE SPECIFIC INIT() IF FOUND
         template_init();
-        if (typeof window.page_init === "function") {
+        if(typeof window.page_init === "function"){
             window.page_init();
         }
     });
