@@ -15,18 +15,26 @@ window.page_init = function(){
     doubleDown_btn = document.getElementById("doubleDown");
     bank_lbl = document.getElementById("bank");
     maindiv = document.getElementById("maindiv");
-    cardHeight = utils.emToPx(maindiv, 5); cardWidth = utils.emToPx(maindiv, 3);
+    cardHeight = utils.emToPx(maindiv, 5); cardWidth = utils.emToPx(maindiv, 3.5);
     left.style.minHeight = "calc(" + minContentHeight +" - 7.5em)";
     var observer = new ResizeObserver(function(){
         right.style.height = left.offsetHeight + "px";
     });
     observer.observe(left);
     endGame();
-    setInterval(tick, 100); //updates per 100ms i.e. 1s
+    setInterval(tick, 200);
 }
 
 function tick(){
     if(toDraw.length>0){ // w/in toDraw: {card: (card), index: 0 if dealer, # of hand of player otherwise, cardPos: position of card in hand}
+        if(typeof(toDraw[0]) === "string"){
+            switch(toDraw.shift()){
+                case "revealDealerCard": revealDealerCard(); break;
+                case "updateLbls": updateLbls(); break;
+                case "endGame": endGame(); break;
+            }
+            return;
+        }
         var isNewHand = toDraw[0].cardPos == 0; var idx = toDraw[0].index;
         if(isNewHand){
             handdivs.push(document.createElement("div"));
@@ -41,22 +49,58 @@ function tick(){
             handdivs[handdivs.length-1].append(tmp2);
             maindiv.append(handdivs[handdivs.length-1]);
         }
-        var cardX = toDraw[0].cardPos*(cardWidth+5) + utils.emToPx(maindiv, 1.5); var cardY = toDraw[0].index*(cardHeight+5);
         var card = toDraw.shift().card;
         var cardEl = document.createElement("img");
+        cardEl.src = getCardSrc(card);
+        if(!revealDealer&&idx==0&&isNewHand){
+            cardEl.src="/imgs/cards/back.png";
+            cardEl.id = "dealerHiddenCard";
+        }
         cardEl.style = "width:" + cardWidth+"px; height:" + cardHeight +"px; border:1px solid black;";
         handdivs[idx].append(cardEl);
         updateLbls();
     }
 }
 
+function getCardSrc(card){
+    var str = "";
+    switch(card.id){
+        case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+            str = "/imgs/cards/" + card.id;
+            break;
+        case "A": str = "/imgs/cards/a"; break;
+        case "J": str = "/imgs/cards/j"; break;
+        case "Q": str = "/imgs/cards/q"; break;
+        case "K": str = "/imgs/cards/k"; break;
+    }
+    switch(card.suit){
+        case 1: str = str + "s.png"; break;
+        case 2: str = str + "h.png"; break;
+        case 3: str = str + "c.png"; break;
+        case 4: str = str + "d.png"; break;
+        default: str = str + ".png"; break;
+    }
+    return str;
+}
+
+function revealDealerCard(){
+    revealDealer = true;
+    var card = document.getElementById("dealerHiddenCard");
+    if(card){
+        card.src = getCardSrc(dealer[0]);
+    }
+}
+
 function updateLbls(){
-    document.getElementById("lbl0").innerHTML = "?";
+    var busted_dealer = getMaxValue(dealer) > BUST;
+    var issoft_dealer = (getMinValue(dealer)==getMaxValue(dealer))?"":"<br>(Soft)";
+    document.getElementById("lbl0").innerHTML = !revealDealer ? "?" : (busted_dealer?"BUST":getMaxValue(dealer)+issoft_dealer);
     for(var idx=1; idx<=player.length; idx++){
+        var busted = getMaxValue(player[idx-1]) > BUST;
         var issoft = (getMinValue(player[idx-1])==getMaxValue(player[idx-1]))?"":"<br>(Soft)";
         var ptr = handIdx+1==idx?"<br>☞":"";
-        console.log(document.getElementById("lbl"+idx));
-        document.getElementById("lbl"+idx).innerHTML = getMaxValue(player[idx-1]) + issoft + ptr;
+        if(!document.getElementById("lbl"+idx)){continue;}
+        document.getElementById("lbl"+idx).innerHTML = busted ? "BUST" : getMaxValue(player[idx-1]) + issoft + ptr;
     }
 }
 
@@ -80,12 +124,18 @@ function nextCard(){
     var funcs = [];
     switch(id){
         case 1:
+            id = "A";
             funcs = [
                 function(val){return val+1;},
                 function(val){return val+11;}
             ];
             break;
-        case 11: case 12: case 13:
+        case 11: 
+            id = "J";
+        case 12: 
+            id = "Q";
+        case 13:    
+            id = "K";
             funcs = [function(val){return val+10;}];
             break;
         case 2: case 3: case 4: case 5: case 6:
@@ -94,12 +144,12 @@ function nextCard(){
             break;
     }
     var suit = utils.randInt(1,4);
-    return {suit, id, funcs};
+    return {suit:suit, id:id, funcs:funcs};
 }
 
 window.btn_bet = function(){
     document.getElementById("bet").value = Math.min(document.getElementById("bet").max, Math.max(document.getElementById("bet").value, document.getElementById("bet").min)); 
-    bet = document.getElementById("bet").value;
+    bet = Number(document.getElementById("bet").value);
     if(bank<bet){
         alert("Insufficient funds - please lower your bet!");
         return;
@@ -108,26 +158,38 @@ window.btn_bet = function(){
     setBankText();
 }
 window.btn_stand = function(){
-    updateLbls();
+    stand();
 }
 window.btn_hit = function(){
-    updateLbls();
+    hit();
 }
-window.split = function(){
+window.btn_split = function(){
     if(bank<bet*(BEGINNING_CARDS-1)){
         alert("Insufficient funds to split!");        
         return;
     }
+    if(!canSplit(player[handIdx])){
+        alert("Splitting not available for this hand.");
+        return;
+    }
+    split();
     setBankText();
-    updateLbls();
 }
-window.doubleDown_btn = function(){
+window.btn_doubleDown = function(){
+    doubleDown_btn.disabled = true;
     if(bank<bet){
         alert("Insufficient funds to double down!");
         return;
     }
+    bank -= bet;
+    bet *= 2;
+    if(player.length!=1||player[0].length!=BEGINNING_CARDS){
+        alert("Doubling down not available at this moment.");
+        return;
+    }
+    hit();
+    stand();
     setBankText();
-    updateLbls();
 }
 
 function dealCard(card, to){
@@ -143,9 +205,10 @@ function dealCard(card, to){
 function newGame(){
     if(gameStarted){return;}
     if(bet>bank){return;}
+    revealDealer = false;
     maindiv.replaceChildren();
     while(handdivs.pop()){}
-    maindiv.minHeight = "5em";
+    maindiv.style.minHeight = "5em";
     document.getElementById("bet").disabled = true;
     bet_btn.disabled = true;
     bank -= bet;
@@ -160,40 +223,47 @@ function newGame(){
         dealCard(nextCard(), 1);
     }
     if(getMaxValue(dealer)==BUST || getMaxValue(player[0])>=BUST){ // dealer/player blackjack or player busts right away
-        endGame();
+        toDraw.push("endGame");
         return;
     }
+    hit_btn.disabled = false;
+    stand_btn.disabled = false;
+    split_btn.disabled = false;
+    doubleDown_btn.disabled = false;
     callback();
     setBankText();
 }
 
 function endGame(){
     if(gameStarted){
-        if(player.length==1&&player[0].length==BEGINNING_CARDS&&getMaxValue(dealer)==BUST){
+        if(!revealDealer){toDraw.push("revealDealerCard");}
+        toDraw.push("updateLbls");
+        var checkhands = true;
+        if(player.length==1&&player[0].length==BEGINNING_CARDS&&getMaxValue(dealer)==BUST&&dealer.length==BEGINNING_CARDS){
             //dealer blackjack
-            return;
-        }
-        if(player.length==1&&player[0].length==BEGINNING_CARDS&&getMaxValue(player[0])==BUST){
+            checkhands = false;
+        }else if(player.length==1&&player[0].length==BEGINNING_CARDS&&getMaxValue(player[0])==BUST){
             //player blackjack
             bank += 2.5*bet;
-            return;
-        }
-        if(player.length==1&&player[0].length==BEGINNING_CARDS&&getMaxValue(player[0])>BUST){
+            checkhands = false;
+        }else if(player.length==1&&player[0].length==BEGINNING_CARDS&&getMaxValue(player[0])>BUST){
             //player busts right away
-            return;
+            checkhands = false;
         }
-        for(var i=0; i<player.length; i++){
-            if(getMaxValue(player[i])>BUST){continue;}
-            if(getMaxValue(dealer)>BUST){bank += 2*bet;}
-            if(getMaxValue(dealer)==getMaxValue(player[i])){bank += bet;}
-            if(getMaxValue(dealer)<getMaxValue(player[i])){bank += 2*bet;}
+        if(checkhands){
+            for(var i=0; i<player.length; i++){
+                if(getMaxValue(player[i])>BUST){continue;}
+                else if(getMaxValue(dealer)>BUST){bank += 2*bet;}
+                else if(getMaxValue(dealer)==getMaxValue(player[i])){bank += 1*bet;}
+                else if(getMaxValue(dealer)<getMaxValue(player[i])){bank += 2*bet;}
+            }
         }
     }
     gameStarted = false;
+
     document.getElementById("bet").max = bank;
     document.getElementById("bet").disabled = false;
     bet_btn.disabled = false;
-    console.log(hit_btn);
     split_btn.disabled = true;
     hit_btn.disabled = true;
     stand_btn.disabled = true;
@@ -201,22 +271,28 @@ function endGame(){
     setBankText();
 }
 
+var revealDealer = false;
+
 function callback(){
     if(!gameStarted){return;}
     if(handIdx>=player.length && !hasStood){
         // all busted and/or blackjack
-        endGame();
+        toDraw.push("endGame");
         return;
     }
     if(handIdx>=player.length){ // has at least one hand stood; time for dealer to reveal cards
+        toDraw.push("revealDealerCard");
         if(getMaxValue(dealer)<=BUST){
             if(!(!HIT_ON_SOFT&&getMaxValue(dealer) >= DEALER_STANDON) && !(HIT_ON_SOFT&&getMinValue(dealer) >= DEALER_STANDON)){
                 dealCard(nextCard(), 0);
                 callback();
             }else{
-                endGame();
+                toDraw.push("endGame");
                 return;
             }            
+        }else{
+            toDraw.push("endGame");
+            return;
         }
     }else{ 
         if(player[handIdx].length<BEGINNING_CARDS){
@@ -276,6 +352,9 @@ function split(){
     if(canSplit(player[handIdx]) && player[handIdx].length==BEGINNING_CARDS){
         bank -= bet*(BEGINNING_CARDS-1);
         var tmp = player[handIdx].pop();
+        for(var i=0; i<BEGINNING_CARDS-1; i++){
+            handdivs[handIdx+1].lastChild.remove();
+        }
         player.push([]);
         dealCard(tmp, player.length);
         callback();
