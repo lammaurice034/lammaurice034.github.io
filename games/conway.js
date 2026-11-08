@@ -112,9 +112,6 @@ function play(){
     document.getElementById("speed").disabled = playing;
     document.getElementById("aliveColour").disabled = playing;
     document.getElementById("deadColour").disabled = playing;
-    if(playing){
-        gen=0;
-    }
     var timer = setInterval(function(){
         if(!playing){clearInterval(timer);}
         nextGen();

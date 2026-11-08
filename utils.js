@@ -551,6 +551,14 @@ export function arr_remove(arr, idx){
     return newArr;
 }
 
+export function arr_count(arr, itm){
+    var count=0;
+    arr.forEach(function(arrItm){
+        if(arrItm==itm){count++;}
+    });
+    return count;
+}
+
 //////////
 /* Misc */
 //////////

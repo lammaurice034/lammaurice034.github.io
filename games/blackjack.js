@@ -22,6 +22,7 @@ window.page_init = function(){
     });
     observer.observe(left);
     endGame();
+    document.getElementById("status").textContent = "Set your bet amounts and press the [Bet] button to start!";
     setInterval(tick, 200);
 }
 
@@ -58,7 +59,7 @@ function tick(){
         }
         cardEl.style = "width:" + cardWidth+"px; height:" + cardHeight +"px; border:1px solid black;";
         handdivs[idx].append(cardEl);
-        updateLbls();
+        if(toDraw.length==0){updateLbls();}
     }
 }
 
@@ -93,14 +94,14 @@ function revealDealerCard(){
 
 function updateLbls(){
     var busted_dealer = getMaxValue(dealer) > BUST;
-    var issoft_dealer = (getMinValue(dealer)==getMaxValue(dealer))?"":"<br>(Soft)";
-    document.getElementById("lbl0").innerHTML = !revealDealer ? "?" : (busted_dealer?"BUST":getMaxValue(dealer)+issoft_dealer);
+    //var issoft_dealer = (getMinValue(dealer)==getMaxValue(dealer) && !dealer.length==BEGINNING_CARDS)?"":"<br>(Soft)";
+    document.getElementById("lbl0").innerHTML = !revealDealer ? "?" : (busted_dealer?"BUST":getMaxValue(dealer));
     for(var idx=1; idx<=player.length; idx++){
         var busted = getMaxValue(player[idx-1]) > BUST;
-        var issoft = (getMinValue(player[idx-1])==getMaxValue(player[idx-1]))?"":"<br>(Soft)";
+        //var issoft = (getMinValue(player[idx-1])==getMaxValue(player[idx-1]))?"":"<br>(Soft)";
         var ptr = handIdx+1==idx?"<br>☞":"";
         if(!document.getElementById("lbl"+idx)){continue;}
-        document.getElementById("lbl"+idx).innerHTML = busted ? "BUST" : getMaxValue(player[idx-1]) + issoft + ptr;
+        document.getElementById("lbl"+idx).innerHTML = busted ? "BUST" : getMaxValue(player[idx-1]) + ptr;
     }
 }
 
@@ -183,6 +184,7 @@ window.btn_doubleDown = function(){
     }
     bank -= bet;
     bet *= 2;
+    document.getElementById("bet").value = bet;
     if(player.length!=1||player[0].length!=BEGINNING_CARDS){
         alert("Doubling down not available at this moment.");
         return;
@@ -202,9 +204,12 @@ function dealCard(card, to){
     maindiv.style.minHeight = "calc(" + (player.length+1) + " * (5px + 5em))";
 }
 
+var bank_b4 = 0;
 function newGame(){
     if(gameStarted){return;}
     if(bet>bank){return;}
+    document.getElementById("status").textContent = "";
+    bank_b4 = bank;
     revealDealer = false;
     maindiv.replaceChildren();
     while(handdivs.pop()){}
@@ -269,6 +274,11 @@ function endGame(){
     stand_btn.disabled = true;
     doubleDown_btn.disabled = true;
     setBankText();
+    if(bank>bank_b4){
+        document.getElementById("status").textContent = "Your net winnings for this game: $"+(bank-bank_b4).toFixed(2)+"!";
+    }else if(bank<bank_b4){
+        document.getElementById("status").textContent = "Your net losses for this game: $"+(bank_b4-bank).toFixed(2);
+    }else{document.getElementById("status").textContent = "Draw!";}
 }
 
 var revealDealer = false;
