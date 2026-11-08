@@ -10,7 +10,7 @@
 <body>
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
-    <h1> <u>Blackjack+</u> </h1> Now with a copious amount of customisation! <br><br>
+    <h1> <u>Blackjack+</u></h1> <div style="height:.25em;"></div> Now with a copious amount of customisation! <br><br>
     
     <div style="display:flex; align-items:stretch; position:relative; padding: 0px; margin: 0px; border-top: 1px solid var(--colour-darkgrey); ">
     <div id="leftpanel" style="width:75%; height:fit-content;">
@@ -19,7 +19,7 @@
         <div style="width:calc(100% - 8em)">
             <span id="bank"> Bank: $100 </span>
             <br>
-            <label for="bet"> Bet amount per hand ($):</label>
+            <label for="bet"> Bet amount per hand:</label>
             <input type="number" id="bet" name="bet" value="10" min="1" max="1000" step="1" style="width:5em;">
         </div>
         <button id="betbtn" onclick="btn_bet();"> PLACE BET </button>

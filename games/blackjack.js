@@ -22,7 +22,7 @@ window.page_init = function(){
     });
     observer.observe(left);
     endGame();
-    document.getElementById("status").textContent = "Set your bet amounts and press the [Bet] button to start!";
+    document.getElementById("status").textContent = "Set your bet amounts and press [PLACE BET] to start!";
     setInterval(tick, 200);
 }
 
@@ -59,7 +59,7 @@ function tick(){
         }
         cardEl.style = "width:" + cardWidth+"px; height:" + cardHeight +"px; border:1px solid black;";
         handdivs[idx].append(cardEl);
-        if(toDraw.length==0){updateLbls();}
+        //if(toDraw.length==0){updateLbls();}
     }
 }
 
@@ -202,6 +202,7 @@ function dealCard(card, to){
     }
     toDraw.push({card: card, index: to, cardPos: to==0?(dealer.length-1):(player[to-1].length-1)});
     maindiv.style.minHeight = "calc(" + (player.length+1) + " * (5px + 5em))";
+    toDraw.push("updateLbls");
 }
 
 var bank_b4 = 0;
@@ -310,6 +311,7 @@ function callback(){
             callback();
         }
     }
+    toDraw.push("updateLbls");
 }
 
 function setBankText(){
