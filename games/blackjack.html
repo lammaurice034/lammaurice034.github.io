@@ -46,15 +46,27 @@
         <button id="doubleDown" onclick="btn_doubleDown();"> Double Down </button> 
         <button id="split" onclick="btn_split();"> Split </button>
     </p>
-    <p id="status"><i>brie is yummy</i></p>
+    <p id="status"><i>you shouldn't be seeing this</i></p>
     <div style="border-top: 1px solid var(--colour-lightgrey); width:95%; padding-bottom: .5em; padding-top:0px;"></div>
     <div style="overflow-y:auto;">
     <div id="maindiv" style="width: 95%; min-height: 5em; height:fit-content;"></div>
     </div>    
     </div>
     <div id="rightpanel" style="width:25%; overflow-y:auto; border-left:1px solid var(--colour-darkgrey); padding-left:.5em; padding-right:.5em; margin-top: .5em;">
-        <h3> Game Settings </h3>
-        <p> gimme sec this is just regular blackjack rn, copious amounts of settings incoming </p>
+        <h3> Game Settings </h3>  <div style="height:.5em;"></div> 
+        <button id="defaultSettings" onclick="defaultSettings();"> Default settings </button> <div style="height:.25em;"></div> <button onclick="confirmSettings();" id="confirmSettings"> Confirm settings </button>
+        <div style="width: 100%; margin:.5em 0px; border-bottom:1px solid var(--colour-lightgrey)"></div>
+        Dealer must hit on this or lower, and stand otherwise: <div style="height:.5em; width:100%;"></div>
+        <fieldset style="border:none; margin:0px; padding:0px;">
+            <input style="margin:0px;" type="radio" id="hard" name="hiton" value="hard" />
+            <label for="hard">Hard</label>
+            <input style="margin:0px;" type="radio" id="soft" name="hiton" value="soft" checked/>
+            <label for="soft">Soft</label>       
+        </fieldset>
+        <div style="height:.25em; width:100%;"></div>
+        <input type="number" id="hiton" name="hitonNumber" style="width:70%;" value="17"/>
+        <div style="width: 100%; margin:.5em 0px; border-bottom:1px solid var(--colour-lightgrey)"></div>
+        Card probabilities:
     </div>
     </div>
     

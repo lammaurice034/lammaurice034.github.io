@@ -137,6 +137,28 @@ h1, h2, h3, h4{
     border-right: 0px solid var(--colour-lightgrey);
 }
 
+a.itembox{
+    display:flex;
+    height: auto;
+    min-height: 5em;
+    width: auto;
+    border: 1px solid var(--colour-lightgrey);
+    align-items: center;
+    padding-left: .5em;
+    text-decoration: none;
+    margin: .5em;
+}
+a.itembox:visited{
+    color: var(--colour-black); 
+    text-decoration: none;
+}
+a.itembox:hover{
+    cursor: pointer;
+}
+a.itembox img{
+    height: auto;
+    border:1px solid var(--colour-black); 
+}
 
 .pageLayout{
     min-width: fit-content;

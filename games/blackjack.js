@@ -23,7 +23,7 @@ window.page_init = function(){
     observer.observe(left);
     endGame();
     document.getElementById("status").textContent = "Set your bet amounts and press [PLACE BET] to start!";
-    setInterval(tick, 200);
+    setInterval(tick, 100);
 }
 
 function tick(){
@@ -148,6 +148,18 @@ function nextCard(){
     return {suit:suit, id:id, funcs:funcs};
 }
 
+window.confirmSettings = function(){
+    if(gameStarted){
+        alert("Game in progress - modification of rules not available at this moment.");
+        return;
+    }
+}
+window.defaultSettings = function(){
+    if(confirm("This will override any custom rules that you might have set; and to put those effects in place, click [Confirm Settings] after default settings are restored. Confirm to proceed?")){
+
+    }
+}
+
 window.btn_bet = function(){
     document.getElementById("bet").value = Math.min(document.getElementById("bet").max, Math.max(document.getElementById("bet").value, document.getElementById("bet").min)); 
     bet = Number(document.getElementById("bet").value);
@@ -176,6 +188,7 @@ window.btn_split = function(){
     split();
     setBankText();
 }
+var doubledDown = false;
 window.btn_doubleDown = function(){
     doubleDown_btn.disabled = true;
     if(bank<bet){
@@ -184,6 +197,7 @@ window.btn_doubleDown = function(){
     }
     bank -= bet;
     bet *= 2;
+    doubledDown = true;
     document.getElementById("bet").value = bet;
     if(player.length!=1||player[0].length!=BEGINNING_CARDS){
         alert("Doubling down not available at this moment.");
@@ -209,6 +223,7 @@ var bank_b4 = 0;
 function newGame(){
     if(gameStarted){return;}
     if(bet>bank){return;}
+    doubledDown = false;
     document.getElementById("status").textContent = "";
     bank_b4 = bank;
     revealDealer = false;
@@ -219,6 +234,8 @@ function newGame(){
     bet_btn.disabled = true;
     bank -= bet;
     gameStarted=true;
+    document.getElementById("defaultSettings").disabled = true;
+    document.getElementById("confirmSettings").disabled = true;
     hasStood = false;
     handIdx=0;
     while(player.pop() !== undefined){}
@@ -265,10 +282,14 @@ function endGame(){
             }
         }
     }
+    if(doubledDown){doubledDown = false; document.getElementById("bet").value = Number(document.getElementById("bet").value)/2;}
     gameStarted = false;
+    document.getElementById("defaultSettings").disabled = false;
+    document.getElementById("confirmSettings").disabled = false;
 
     document.getElementById("bet").max = bank;
     document.getElementById("bet").disabled = false;
+    document.getElementById("bet").value = Math.max(Math.min(document.getElementById("bet").value, bank), 1);
     bet_btn.disabled = false;
     split_btn.disabled = true;
     hit_btn.disabled = true;

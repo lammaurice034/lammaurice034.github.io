@@ -52,7 +52,7 @@ function template_init(){
                 utils.drawPixel(ctx, {x:i, y:j});
             }
         }
-        document.body.style.backgroundImage = `url(${canvas.toDataURL()})`;
+        document.body.style.backgroundImage = "url(" + canvas.toDataURL() + ")";
     }
     // weather
     var template = document.getElementById("pageTemplate");
@@ -77,6 +77,24 @@ function template_init(){
         a.href = a.dataset.url;
         a.textContent = a.dataset.url;
         a.target= "_blank";
+    });
+    // set up the itembox class 
+    document.querySelectorAll('a.itembox').forEach(function(a){
+        a.href = a.dataset.link;
+        a.title = a.dataset.link.toUpperCase();
+        var imgwidth = "4em";
+        console.log(a.dataset.imgwidth);
+        if(a.dataset.imgwidth !== undefined){
+            imgwidth = a.dataset.imgwidth;
+        }
+        var htmlString = "";
+        if(a.dataset.img){
+            htmlString += '<img src=\"' + a.dataset.img+ '" style="width:' + imgwidth+';"></img>';
+        }
+        htmlString += "<div style=\"width:.5em;\"></div>"
+        + "<div style=\"height:stretch; padding-bottom: .5em;\"><h3><b>" + a.dataset.title 
+        + "</b></h3><span>" + a.dataset.text + "</span></div>";
+        a.insertAdjacentHTML("beforeend", htmlString);
     });
     // other stuff
     addPoster(document.getElementById("template_sidebar_left"), "/imgs/posters/poster" + utils.randInt(1,posters) + ".gif", "90%");
