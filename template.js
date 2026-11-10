@@ -3,7 +3,7 @@ var root = getComputedStyle(document.documentElement);
 
 // consts
 var tilingCount = 5;
-var posters = 1;
+var posters = 2;
 
 if(document.addEventListener){
     document.addEventListener("DOMContentLoaded", loadLayout, false);

@@ -6,6 +6,16 @@ var bank_lbl; var maindiv; var handdivs = [];
 var cardWidth; var cardHeight;
 
 window.page_init = function(){
+    document.querySelectorAll('div.cardProb').forEach(function(div){
+        var htmlString = "<img src=\""+div.dataset.img+"\"</img>"
+        + "<div><b>"+div.dataset.txt+"</b><br> Weight: "
+        + "<input type=\"number\" id=\"prob_" + div.id + "\" min=\"0\" step=\"1\" value=\"0\" />" 
+        + "<p id=\"pct_" + div.id+ "\">Prob.:</p></div>";
+        div.insertAdjacentHTML("beforeend", htmlString);
+        
+        document.getElementById("prob_"+div.id).addEventListener("change", function(event){inputChange();});
+    })
+    setDefault();
     var left = document.getElementById("leftpanel");
     var right = document.getElementById("rightpanel");
     bet_btn = document.getElementById("betbtn");
@@ -17,6 +27,7 @@ window.page_init = function(){
     maindiv = document.getElementById("maindiv");
     cardHeight = utils.emToPx(maindiv, 5); cardWidth = utils.emToPx(maindiv, 3.5);
     left.style.minHeight = "calc(" + minContentHeight +" - 7.5em)";
+    right.style.minHeight = "calc(" + minContentHeight +" - 7.5em)";
     var observer = new ResizeObserver(function(){
         right.style.height = left.offsetHeight + "px";
     });
@@ -24,6 +35,16 @@ window.page_init = function(){
     endGame();
     document.getElementById("status").textContent = "Set your bet amounts and press [PLACE BET] to start!";
     setInterval(tick, 100);
+}
+
+function inputChange(){
+    var total = 0;
+    document.querySelectorAll('div.cardProb input').forEach(function(input){
+        total += Number(input.value);
+    });
+    document.querySelectorAll('div.cardProb').forEach(function(div){
+        document.getElementById('pct_'+div.id).textContent = "Prob.: " + (Number(document.getElementById('prob_'+div.id).value)/total*100).toFixed(2) + "%";
+    });
 }
 
 function tick(){
@@ -119,32 +140,39 @@ var player = [];
 var dealer = [];
 var toDraw = [];
 
+var cardsArr = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+var cardProbs = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
+var randTotal = 52;
+
 function nextCard(){
     // card: {suit, id, [value funcs]}
-    var id=utils.randInt(1, 13);
+    var num = utils.randInt(1, randTotal);
+    var id = cardsArr[cardsArr.length-1];
+    for(var i=0; i<cardsArr.length; i++){
+        num -= cardProbs[i];
+        if(num<=0){id = cardsArr[i]; break;}
+    }
     var funcs = [];
+    var needSuit = false;
     switch(id){
-        case 1:
-            id = "A";
+        case "A":
             funcs = [
                 function(val){return val+1;},
                 function(val){return val+11;}
             ];
+            needSuit = true;
             break;
-        case 11: 
-            id = "J";
-        case 12: 
-            id = "Q";
-        case 13:    
-            id = "K";
+        case "J": case "Q": case "K":
             funcs = [function(val){return val+10;}];
+            needSuit = true;
             break;
         case 2: case 3: case 4: case 5: case 6:
         case 7: case 8: case 9: case 10:
             funcs = [function(val){return val+id;}];
+            needSuit = true;
             break;
     }
-    var suit = utils.randInt(1,4);
+    var suit = !needSuit? -1 : utils.randInt(1,4);
     return {suit:suit, id:id, funcs:funcs};
 }
 
@@ -153,11 +181,45 @@ window.confirmSettings = function(){
         alert("Game in progress - modification of rules not available at this moment.");
         return;
     }
+    HIT_ON_SOFT = document.getElementById("soft").checked;
+    DEALER_STANDON = document.getElementById("hitonNumber").value;
+    BEGINNING_CARDS = document.getElementById("beginningcards").value;
+    BUST = document.getElementById("bust").value;
+    while(cardProbs.pop() !== undefined){}
+    randTotal = 0;
+    document.querySelectorAll('div.cardProb input').forEach(function(input){
+        randTotal += Number(input.value);
+        cardProbs.push(Number(input.value));
+    });
+    alert("Settings saved!");
 }
 window.defaultSettings = function(){
     if(confirm("This will override any custom rules that you might have set; and to put those effects in place, click [Confirm Settings] after default settings are restored. Confirm to proceed?")){
-
+        setDefault();
     }
+}
+function setDefault(){
+    document.getElementById("soft").checked = true;
+    document.getElementById("hitonNumber").value = 17;
+    document.querySelectorAll('div.cardProb input').forEach(function(input){
+        input.value = 0;
+    });
+    document.getElementById("beginningcards").value = 2;
+    document.getElementById("bust").value = 21;
+    document.getElementById("prob_ace").value = 4;
+    document.getElementById("prob_two").value = 4;
+    document.getElementById("prob_three").value = 4;
+    document.getElementById("prob_four").value = 4;
+    document.getElementById("prob_five").value = 4;
+    document.getElementById("prob_six").value = 4;
+    document.getElementById("prob_seven").value = 4;
+    document.getElementById("prob_eight").value = 4;
+    document.getElementById("prob_nine").value = 4;
+    document.getElementById("prob_ten").value = 4;
+    document.getElementById("prob_jack").value = 4;
+    document.getElementById("prob_queen").value = 4;
+    document.getElementById("prob_king").value = 4;
+    inputChange();
 }
 
 window.btn_bet = function(){

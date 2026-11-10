@@ -13,7 +13,7 @@
     <h1> <u>Blackjack+</u></h1> <div style="height:.25em;"></div> Now with a copious amount of customisation! <br><br>
     
     <div style="display:flex; align-items:stretch; position:relative; padding: 0px; margin: 0px; border-top: 1px solid var(--colour-darkgrey); ">
-    <div id="leftpanel" style="width:75%; height:fit-content;">
+    <div id="leftpanel" style="width:70%; height:fit-content;">
     <br>
     <div style="display:flex;">
         <div style="width:calc(100% - 8em)">
@@ -52,9 +52,10 @@
     <div id="maindiv" style="width: 95%; min-height: 5em; height:fit-content;"></div>
     </div>    
     </div>
-    <div id="rightpanel" style="width:25%; overflow-y:auto; border-left:1px solid var(--colour-darkgrey); padding-left:.5em; padding-right:.5em; margin-top: .5em;">
+    <div id="rightpanel" style="width:30%; overflow-y:auto; border-left:1px solid var(--colour-darkgrey); padding-left:.5em; padding-right:.5em; margin-top: .5em;">
         <h3> Game Settings </h3>  <div style="height:.5em;"></div> 
         <button id="defaultSettings" onclick="defaultSettings();"> Default settings </button> <div style="height:.25em;"></div> <button onclick="confirmSettings();" id="confirmSettings"> Confirm settings </button>
+        <br><span style="color:red; font-size: .75em;"><i>Click confirm for the settings to take effect!</i></span>
         <div style="width: 100%; margin:.5em 0px; border-bottom:1px solid var(--colour-lightgrey)"></div>
         Dealer must hit on this or lower, and stand otherwise: <div style="height:.5em; width:100%;"></div>
         <fieldset style="border:none; margin:0px; padding:0px;">
@@ -64,13 +65,53 @@
             <label for="soft">Soft</label>       
         </fieldset>
         <div style="height:.25em; width:100%;"></div>
-        <input type="number" id="hiton" name="hitonNumber" style="width:70%;" value="17"/>
+        <input type="number" id="hitonNumber" name="hitonNumber" style="width:70%;" value="17"/>
+        <div style="width: 100%; margin:.5em 0px; border-bottom:1px solid var(--colour-lightgrey)"></div>
+        Deal this many cards during for a new hand: <br>
+        <input type="number" id="beginningcards" name="beginningcards" style="width:70%;" value="2"/> <br>
+        Hand busts if the value is higher than: <br>
+        <input type="number" id="bust" name="bust" style="width:70%;" value="21"/> <br>
         <div style="width: 100%; margin:.5em 0px; border-bottom:1px solid var(--colour-lightgrey)"></div>
         Card probabilities:
+        <div class="cardProb" id="ace" data-img="/imgs/cards/as.png" data-txt="Ace (1 or 11)"></div>
+        <div class="cardProb" id="two" data-img="/imgs/cards/2s.png" data-txt="Deuce"></div>
+        <div class="cardProb" id="three" data-img="/imgs/cards/3s.png" data-txt="Three"></div>
+        <div class="cardProb" id="four" data-img="/imgs/cards/4s.png" data-txt="Four"></div>
+        <div class="cardProb" id="five" data-img="/imgs/cards/5s.png" data-txt="Five"></div>
+        <div class="cardProb" id="six" data-img="/imgs/cards/6s.png" data-txt="Six"></div>
+        <div class="cardProb" id="seven" data-img="/imgs/cards/7s.png" data-txt="Seven"></div>
+        <div class="cardProb" id="eight" data-img="/imgs/cards/8s.png" data-txt="Eight"></div>
+        <div class="cardProb" id="nine" data-img="/imgs/cards/9s.png" data-txt="Nine"></div>
+        <div class="cardProb" id="ten" data-img="/imgs/cards/10s.png" data-txt="Ten"></div>
+        <div class="cardProb" id="jack" data-img="/imgs/cards/js.png" data-txt="Jack (=10)"></div>
+        <div class="cardProb" id="queen" data-img="/imgs/cards/qs.png" data-txt="Queen (=10)"></div>
+        <div class="cardProb" id="king" data-img="/imgs/cards/ks.png" data-txt="King (=10)"></div>
     </div>
     </div>
     
 </template>
+<style>
+    .cardProb{
+        display: flex;
+        align-items: center;
+        height:4em; 
+        margin: .25em 0px;
+        gap: .25em .25em;
+    }
+    .cardProb div, .cardProb span, .cardProb p{
+        margin: 0px;
+        gap: 0px;
+        padding: 0px;
+    }
+    .cardProb img{
+        border: 1px solid var(--colour-black);
+        width: auto;
+        height: 3em;
+    }
+    .cardProb input{
+        width: 4em;
+    }
+</style>
 <script type="module" src = "/template.js"> </script>
 <script type="module" src = "./blackjack.js"> </script>
 </body>
