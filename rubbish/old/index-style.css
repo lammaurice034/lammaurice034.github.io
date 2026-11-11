@@ -1,0 +1,83 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+.top-section{
+    position: sticky;
+    top: 0;
+    margin: 0;
+    text-align: left;
+    height: auto3;
+    z-index: 1000;
+    background-position: center;
+    background-color: #204;
+    border-top: 2px solid #204;
+    border-bottom: 1px solid silver;
+
+    .arrows{
+        display: flex;
+        flex-direction: column;
+        gap: .1em;
+    }
+    .line1{
+        width: 95vw;
+        height: 0.3em;
+        background-color: red;
+    }
+    .triangle1{
+        width: 1vw;
+        border-left: 1vw solid red;
+        border-bottom: .3em solid transparent;      
+    }
+    .line2{
+        width: 92vw;
+        height: 0.3em;
+        background-color: yellow;
+    }
+    .triangle2{
+        width: 1vw;
+        border-left: 1vw solid yellow;
+        border-bottom: .3em solid transparent;      
+    }
+    .line3{
+        width: 89vw;
+        height: 0.3em;
+        background-color: purple;
+    }
+    .triangle3{
+        width: 1vw;
+        border-left: 1vw solid purple;
+        border-bottom: .3em solid transparent;      
+    }
+    .line4{
+        width: 100vw;
+        height: 0.1em;
+        background-color: #204;
+    }
+    .arrow1{display:flex;}
+    .arrow2{display:flex;}
+    .arrow3{display:flex;}
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    text-align: center;
+    padding: 0px;
+    background-position: center;
+    background-image: url('tiling/tiling1.png');
+    background-size: 48px 48px; 
+    image-rendering: pixelated;
+}
+
+.panel1{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    overflow-y: auto;  
+    background: black;
+    padding: 0px;
+    box-sizing: border-box;
+}
