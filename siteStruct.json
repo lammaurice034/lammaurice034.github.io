@@ -8,7 +8,8 @@
         {"name": "tools/", "contents":[
             {"name": "index.html", "displayName": "(Main page)"},
             {"name": "nameColour.html", "displayName": "Name a colour"},
-            {"name": "wednesday.html", "displayName": "Is today Wednesday?"}
+            {"name": "wednesday.html", "displayName": "Is today Wednesday?"},
+            {"name": "numconv.html", "displayName": "Number conversion"}
         ], "displayName": "Tools"},
         
         {"name": "games/", "contents":[
