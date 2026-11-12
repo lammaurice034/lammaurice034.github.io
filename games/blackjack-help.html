@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>Maurice's BS</title>
+    <link rel="stylesheet" href="/template.css">
+    <script type="module" src="/utils.js"></script>
+</head>
+<body>
+<div id="sharedLayout"> </div>
+<template id="pageTemplate">
+    <h1> <u>Blackjack+</u></h1> <div style="height:.25em;"></div> Now with a copious amount of customisation! <a href="./blackjack.html">Back to game</a> <br><br>
+    <div style="display:flex; align-items:stretch; position:relative; padding: 0px; margin: 0px; border-top: 1px solid var(--colour-darkgrey); "></div>
+        <h2> What's with all the settings?</h2>
+        <p> This isn't your ordinary Blackjack; you are given control to modify what rules you'd like to play under.
+            Change the settings of what constitutes as a busted hand. </p>
+        <p> You can make it that a 10 is a Blackjack and anything above is a busted hand.
+            You can make it that 50 cards is dealt on the first turn to both you and the dealer.
+            You can make half the deck of cards Aces.
+            And don't worry, no real money is involved here - just imaginary points that resets when you reload the site.
+        </p>
+        <p> Just be careful that you might end up with unplayable settings, such as each hand busts when it is over 5 and your entire deck is face cards. 
+            You'd automatically bust in every single game. 
+        </p>
+        <br>
+        <h2> Rules of Blackjack </h2>
+        <p> The premise of the game is to obtain a hand with value greater than the dealer's without going over 21 (busting).
+            The value of a hand is calculated as the sum of all values of each card, where the deuces to tens retain their numerical value,
+            Jacks, Queens & Kings all bear the value of 10, and aces being flexible, either 1 or 11. </p>
+        <p> In a game, the player places a bet and a dealer starts by dealing two cards each to the player and the dealer.
+            The dealer only reveals one card of his hand.
+            The player can then choose to hit, i.e. requesting another card, or stand, to declare stop hitting.
+            There is no limit as to how many times can a player hit on a hand given the hand has not busted. </p>
+        <p>
+            Once the player stands, the dealer reveals his concealed card. It is required for the dealer to keep hitting until he has a hard 17 or above.
+            Note that a 'soft' and 'hard' hand here denotes whether the hand has multiple valid values. For instance, an ace and a six could be a 17 or a 7,
+            depending on whether the ace is used as a 1 or 11, and thus would be a soft 17, in contrary a Queen and a 7 would be a hard 17.
+        </p>
+        <p> The player wins 1:1 if their hand has a higher value than the dealer or the dealer busts. A busted hand from the player is considered
+            an instant loss regardless of the dealer's hand. 
+        </p>
+        <p> There are special cases of winning, however. If the player have a 21 on the first deal (i.e. getting dealt an ace and a face card or 10),
+            the player <i>Blackjacks</i> and wins 1:1.5. Shall the dealer win in such a manner, however, it is an instant loss for the player. 
+        </p>
+        <p> When a player is dealt two of the same cards in the beginning, he could elect to split.
+            Splitting would require the player to bet the same amount again, in turn he will be dealt with an extra hand to play against the dealer.
+            For instance, a player is dealt two aces during the beginning and wishes to split; he then would have two hands, each having an ace and 
+            a newly dealt card to proceed with. Those two hands are independent of each other in terms of wins and losses, effectively playing as two
+            players against the same dealer. While there usually is a limit of how many times a player can split, this website did not set a limit.
+        </p>
+        <p> Furthermore, the player can double down when he was dealt the first two cards. The player must bet double the amount, and one and only one extra
+            card will be dealt to that hand. The dealer then treats the player as if he has stood and proceed with dealing to himself.
+        </p>
+        <br> Best of luck!
+        <div style="text-align: center;"><button style="font-weight:700;" onclick="location.href='./blackjack.html';">Go back to game</button></div>
+</template>
+
+<script type="module" src = "/template.js"> </script>
+<script type="module" src = "./blackjack.js"> </script>
+</body>
+</html>
