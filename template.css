@@ -155,6 +155,10 @@ a.itembox:visited{
 a.itembox:hover{
     cursor: pointer;
 }
+a.itembox:hover h3{
+    color: var(--bg-colour1-tint);
+    text-decoration: underline;
+}
 a.itembox img{
     height: auto;
     border:1px solid var(--colour-black); 
@@ -197,6 +201,7 @@ a.itembox img{
 .pageLayout .sidebar.left span:hover{
     cursor: pointer;
     color: var(--bg-colour1-tint);
+    text-decoration: underline;
 }
 
 .pageLayout .sidebar p, .pageLayout .sidebar h1, .pageLayout .sidebar h2, .pageLayout .sidebar h3, .pageLayout .sidebar h4{
@@ -209,8 +214,8 @@ a.itembox img{
 
 .pageContent{
     margin: 0px;
-    min-width: 20em;
-    max-width: 50em;
+    min-width: 32em;
+    max-width: 60vw;
     padding: 1em;
     padding-top: 0em;
     flex: 1;

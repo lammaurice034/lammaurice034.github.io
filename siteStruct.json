@@ -2,6 +2,7 @@
     "name": "/", "contents": [
         {"name": "projects/", "contents": [
             {"name": "index.html", "displayName": "(Main page)"},
+            {"name": "fishy.html", "displayName": "Fishy F*ckery"},
             {"name": "mahjong_c.html", "displayName": "Mahjong_C"}
         ], "displayName": "Coding Projects"},
         

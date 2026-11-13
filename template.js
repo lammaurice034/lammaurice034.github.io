@@ -28,6 +28,8 @@ export var minContentHeight = "";
 
 function template_init(){
     // spacing and stuff
+    // var dpr = window.devicePixelRatio;
+    // document.documentElement.style.zoom = (1/dpr).toString();
     var headerHeight = document.getElementById("template_header").getBoundingClientRect().height;
     var footerHeight = document.getElementById("template_footer").getBoundingClientRect().height;
     document.getElementById("headerBuffer").style.height = headerHeight+"px";
@@ -81,9 +83,8 @@ function template_init(){
     // set up the itembox class 
     document.querySelectorAll('a.itembox').forEach(function(a){
         a.href = a.dataset.link;
-        a.title = a.dataset.link.toUpperCase();
+        //a.title = a.dataset.link.toUpperCase();
         var imgwidth = "4em";
-        console.log(a.dataset.imgwidth);
         if(a.dataset.imgwidth !== undefined){
             imgwidth = a.dataset.imgwidth;
         }
@@ -144,7 +145,7 @@ export function navToPath(path){
                 htmlString = htmlString + '<span style="text-align:left;" title="' + value.name.toUpperCase()
                     +'" onclick="navToPath(\''
                     + path + "/" + value.name +
-                    '\');"> <img src="/imgs/' + (isFile(value.name) ? "goto":"folder") +'.png" style="width:1em; height:1em;">' 
+                    '\');"> <img src="/imgs/' + (isFile(value.name) ? (value.name.toUpperCase() == "INDEX.HTML" ? "homepage" : "goto"):"folder") +'.png" style="width:1em; height:1em;">' 
                     + (value.displayName===undefined ? value.name.toUpperCase() : value.displayName) +"</span>";
             }
             htmlString = htmlString + '</div><span style="text-align:center; width:100%;" onclick="navToPath(\''
