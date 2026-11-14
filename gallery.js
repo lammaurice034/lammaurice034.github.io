@@ -6,9 +6,8 @@ var list = 1;
 window.page_init = function(){
     utils.xhr_fetch("./imglist.txt", function(err, txt){
         if(err){return;}
-        console.log(txt);
         list = txt.split(/\r?\n/).filter(function(line){return line.trim()!==""});
-        console.log(list);
+        utils.arr_shuffle(list);
     });
 }
 
