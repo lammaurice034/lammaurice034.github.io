@@ -215,6 +215,7 @@ function getWeather(callback){
 }
 
 function getWeatherImg(str){
+    return "/imgs/weather/clear_night.gif";
     switch(str.trim().toLowerCase()){
         case "clear":
         case "sunny":

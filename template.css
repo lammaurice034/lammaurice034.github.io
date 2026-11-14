@@ -112,7 +112,7 @@ h1, h2, h3, h4{
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-100%, -25%);
+    transform: translate(-100%, -15%);
 }
 .weatherline p{
     -webkit-text-stroke: 1px var(--bg-colour1-tint);

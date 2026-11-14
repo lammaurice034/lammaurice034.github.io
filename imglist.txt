@@ -1,0 +1,13 @@
+/imgs/badges/CC_BY-NC-SA_icon_88x31.png
+/imgs/badges/github.png
+/imgs/posters/poster1.gif
+/imgs/posters/poster2.gif
+/imgs/badges/blackjack.gif
+/imgs/weather/clear_day.gif
+/imgs/weather/clear_night.gif
+/imgs/weather/cloudy.gif
+/imgs/weather/fog.gif
+/imgs/weather/rain.gif
+/imgs/weather/sleet.gif
+/imgs/weather/snow.gif
+/imgs/weather/thunder.gif
