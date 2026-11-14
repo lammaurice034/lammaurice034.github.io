@@ -11,18 +11,25 @@
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
     <h1><u> Number conversion </u></h1>
-    <p>Enter a <b>non-negative integer</b> in any of the fields below then convert it into different formats:</p>
-    <b>PAGE IS UNDER CONSTRUCTION NONE OF THIS WILL WORK JUST YET</b>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Decimal:</span><input style="width:50%;" onchange="conv_dec();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Hexadecimal:</span><input style="width:50%;" onchange="conv_hex();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Binary:</span><input style="width:50%;" onchange="conv_bin();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">English:</span><input style="width:50%;" onchange="conv_eng();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Roman:</span><input style="width:50%;" onchange="conv_roman();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Eastern Arabic:</span><input style="width:50%;" onchange="conv_east();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Devanagari:</span><input style="width:50%;" onchange="conv_dev();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Indian numbering:</span><input style="width:50%;" onchange="conv_ind();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Chinese:</span><input style="width:50%;" onchange="conv_chi();" /></p>
-    <p style="width:100%;"><span style="display:inline-block; width:10em;">Chinese Financial:</span><input style="width:50%;" onchange="conv_chi_f();" /></p>
+    <p>Enter a <b><u>non-negative integer</u></b> in any of the fields below then convert it into different formats. </p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Decimal*:</span><input id="dec" style="width:50%;" onchange="conv_dec();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Hexadecimal*:</span><input id="hex" style="width:50%;" onchange="conv_hex();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Binary*:</span><input id="bin" style="width:50%;" onchange="conv_bin();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">English§:</span><input id="eng" style="width:50%;" onchange="conv_eng();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Roman†:</span><input id="rom" style="width:50%;" onchange="conv_roman();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Eastern Arabic§:</span><input id="eas" style="width:50%;" onchange="conv_east();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Indian (Lakh-crore):</span><input id="ind" style="width:50%;" onchange="conv_ind();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Chinese‡:</span><input id="chi" style="width:50%;" onchange="conv_chi();" /></p>
+    <p style="width:100%;"><span style="display:inline-block; width:10em;">Chinese Financial‡:</span><input id="chf" style="width:50%;" onchange="conv_chi_f();" /></p>
+    <br>
+    <h3> Footnotes: </h3>
+        * Due to technical limitations, numbers larger than 2<sup>53</sup> might not convert correctly. <br>
+        † There is only support for roman numerals up to 3,999. <br>
+        ‡ Only limited support for simplified Chinese - please use the traditional script for best results. <br>
+        § Please do not mix Western Arabic numerals in your input.
+    <p> Please note that this tool is not very robust and if you enter an invalid input, you might get unexpected behaviours.
+
+    </p>
 </template>
 
 </style>

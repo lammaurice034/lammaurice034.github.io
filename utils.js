@@ -159,6 +159,38 @@ export function lineAngle(point_origin, point_dest){ // 0 = right, clockwise. go
 
 export function getSign(x){return x==0 ? 0 : (x>0 ? 1 : -1);}
 
+export function baseConv(val, baseFrom, baseTo){ // up to base 36, using A-Z
+    if(val==""||val=="0"){return "0";}
+    var arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
+        "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
+        "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    if(baseFrom>36||baseTo>36||baseFrom<2||baseTo<2){return undefined;}
+    if(typeof(val)!="string"){val = val.toString();}
+    val = val.toUpperCase();
+    [...val].forEach(function(c){
+        if(arr.indexOf(c)>baseFrom){return undefined;}
+    });
+    function toDec(n, base){
+        if(base==10){return n;}
+        var result=0;
+        var narr = [...(n.toString())];
+        for(var i=0; i<narr.length; i++){
+            result += arr.indexOf(narr[narr.length-i-1])*base**i;
+        }
+        return result;
+    }
+    function fromDec(n, base){
+        if(base==10){return n;}
+        var str = "";
+        while(n>0){
+            str = arr[n%base]+str;
+            n = Math.floor(n/base);
+        }
+        return str;
+    }
+    return fromDec(toDec(val, baseFrom), baseTo);
+}
+
 ////////////////////////////
 /* Basic Image processing */
 ////////////////////////////
