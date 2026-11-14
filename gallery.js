@@ -2,7 +2,7 @@ import * as utils from "/utils.js";
 import { minContentHeight } from "/template.js";
 var root = getComputedStyle(document.documentElement);
 
-var list = "x";
+var list;
 window.page_init = function(){
     utils.xhr_fetch("./imglist.txt", function(err, txt){
         if(err){return;}
