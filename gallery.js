@@ -8,6 +8,12 @@ window.page_init = function(){
         if(err){return;}
         list = txt.split(/\r?\n/).filter(function(line){return line.trim()!==""});
         utils.arr_shuffle(list);
+        var area = document.getElementById("contentDiv");
+        for(var src of list){
+            var img = document.createElement("img");
+            img.src = src;
+            area.appendChild(img);
+        }
     });
 }
 

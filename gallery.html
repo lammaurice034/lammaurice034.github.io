@@ -10,8 +10,21 @@
 <body>
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
-    
+    <div id="contentDiv"></div>
 </template>
+<style>
+    #contentDiv{
+        columns: 8em;
+        column-gap: 10px;
+    }
+    #contentDiv img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+        break-inside: avoid;
+    }
+</style>
 <script type="module" src = "/template.js"> </script>
 <script type="module" src = "./gallery.js"> </script>
 </body>
