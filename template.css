@@ -5,20 +5,20 @@
     --min-width: 36em;
     /* leave bg colour 2 and accent colour 1 as a name */
     --colour-white: white;
-    --colour-lightgrey:silver;
-    --colour-darkgrey: grey;
+    --colour-lightgrey: silver;
+    --colour-darkgrey: slategrey;
     --colour-black: black;
-    --bg-colour1: darkorange;
-    --bg-colour1-tint: rgb(218, 94, 0);
-    --bg-colour2: chocolate; 
-    --bg-colour2-tint: brown; 
-    --bg-colour-light: Moccasin;
-    --bg-colour-lighter: rgb(255, 251, 245);
-    --accent-colour1: Turquoise; 
-    --accent-colour1-tint: cyan;
-    --accent-bg1: NavajoWhite;
-    --a-colour: dodgerblue;
-    --a-clicked: violet;
+    --bg-colour1: #124;
+    --bg-colour1-tint: #018;
+    --bg-colour2: purple; 
+    --bg-colour2-tint: slateblue; 
+    --bg-colour-light: #ccd;
+    --bg-colour-lighter: #eef;
+    --accent-colour1: gold;
+    --accent-colour1-tint: yellow;
+    --accent-bg1: #ffe;
+    --a-colour: blue;
+    --a-clicked: purple;
 }
 :root[data-theme="original"]{ /* leave bg colour 2 and accent colour 1 as a name */
     --colour-white: white;
