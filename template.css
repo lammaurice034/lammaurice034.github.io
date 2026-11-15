@@ -5,20 +5,20 @@
     --min-width: 36em;
     /* leave bg colour 2 and accent colour 1 as a name */
     --colour-white: white;
-    --colour-lightgrey: silver;
-    --colour-darkgrey: slategrey;
+    --colour-lightgrey:silver;
+    --colour-darkgrey: SlateGray;
     --colour-black: black;
-    --bg-colour1: #124;
-    --bg-colour1-tint: #018;
-    --bg-colour2: purple; 
-    --bg-colour2-tint: slateblue; 
-    --bg-colour-light: #ccd;
-    --bg-colour-lighter: #eef;
-    --accent-colour1: gold;
-    --accent-colour1-tint: yellow;
-    --accent-bg1: #ffe;
-    --a-colour: blue;
-    --a-clicked: purple;
+    --bg-colour1: rgb(33, 166, 100);
+    --bg-colour1-tint: LimeGreen;
+    --bg-colour2: ForestGreen; 
+    --bg-colour2-tint: DarkGreen; 
+    --bg-colour-light: rgb(220, 243, 220);
+    --bg-colour-lighter: rgb(245, 252, 245);
+    --accent-colour1: DarkOrange; 
+    --accent-colour1-tint: Orange;
+    --accent-bg1: LavenderBlush;
+    --a-colour: RoyalBlue;
+    --a-clicked: DarkMagenta;
 }
 :root[data-theme="original"]{ /* leave bg colour 2 and accent colour 1 as a name */
     --colour-white: white;
@@ -252,7 +252,6 @@ a.itembox img{
 }
 .pageLayout .sidebar.left span:hover{
     cursor: pointer;
-    color: var(--bg-colour1-tint);
     text-decoration: underline;
 }
 
