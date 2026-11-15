@@ -215,6 +215,8 @@ function template_colonise(){
     pageContent.style = "display:flex; flex-direction:column;";
     pageContent.style.backgroundImage = "url('/imgs/unionjack.png')";
     pageContent.style.backgroundSize = "100% 100%";
+    pageContent.style.backgroundRepeat = "no-repeat";
+    pageContent.style.backgroundAttachment = "local";
     var audio = new Audio('/audio/rulebritainnia.wav');
     audio.loop = true;
     audio.play();
