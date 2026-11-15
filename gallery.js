@@ -26,6 +26,14 @@ window.clickHandler = function(src, enabled){ // return: only works if enabled=f
             if(!enabled){return true;}
             window.open("https://github.com/lammaurice034/", '_blank').focus();
             break;
+        case "/imgs/badges/blackjack.gif": 
+            if(!enabled){return true;}
+            window.location.href = "/games/blackjack.html";
+            break;
+        case "/imgs/gallery/rick.png": 
+            if(!enabled){return true;}
+            window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", '_blank').focus();
+            break;
     }
     return false;
 }

@@ -8,12 +8,13 @@
     --colour-lightgrey:silver;
     --colour-darkgrey: SlateGray;
     --colour-black: black;
+    --header-colour: var(--colour-white);
     --bg-colour1: rgb(33, 166, 100);
     --bg-colour1-tint: LimeGreen;
     --bg-colour2: ForestGreen; 
     --bg-colour2-tint: DarkGreen; 
-    --bg-colour-light: rgb(220, 243, 220);
-    --bg-colour-lighter: rgb(245, 252, 245);
+    --bg-colour-light: rgb(210, 233, 210);
+    --bg-colour-lighter: rgb(247, 255, 247);
     --accent-colour1: DarkOrange; 
     --accent-colour1-tint: Orange;
     --accent-bg1: LavenderBlush;
@@ -25,6 +26,7 @@
     --colour-lightgrey: silver;
     --colour-darkgrey: slategrey;
     --colour-black: black;
+    --header-colour: var(--colour-white);
     --bg-colour1: #124;
     --bg-colour1-tint: #018;
     --bg-colour2: purple; 
@@ -42,6 +44,7 @@
     --colour-lightgrey:silver;
     --colour-darkgrey: grey;
     --colour-black: black;
+    --header-colour: var(--colour-white);
     --bg-colour1: darkorange;
     --bg-colour1-tint: rgb(218, 94, 0);
     --bg-colour2: chocolate; 
@@ -54,6 +57,26 @@
     --a-colour: RoyalBlue;
     --a-clicked: DarkMagenta;
 }
+:root[data-theme="winter"]{ /* leave bg colour 2 and accent colour 1 as a name */
+    --colour-white: white;
+    --colour-lightgrey:silver;
+    --colour-darkgrey: grey;
+    --colour-black: black;
+    --header-colour: var(--colour-black);
+    --bg-colour1: rgb(99, 137, 141);
+    --bg-colour1-tint: rgb(135, 169, 169);
+    --bg-colour2: LightSteelBlue; 
+    --bg-colour2-tint: rgb(165, 165, 195); 
+    --bg-colour-light: rgb(223, 240, 255);
+    --bg-colour-lighter: aliceblue;
+    --accent-colour1: Teal; 
+    --accent-colour1-tint: darkcyan;
+    --accent-bg1: rgb(170, 229, 209);
+    --a-colour: RoyalBlue;
+    --a-clicked: DarkMagenta;
+}
+
+
 
 html{
     image-rendering: pixelated;
@@ -110,8 +133,8 @@ h1, h2, h3, h4{
     left: 0;
     font-size: 16px;
 }
-.header a, .toplink{color: var(--colour-white); text-decoration: none;}
-.header a:visited{color: var(--colour-white);}
+.header a, .toplink{color: var(--header-colour); text-decoration: none;}
+.header a:visited{color: var(--header-colour);}
 .header a:hover, .toplink span:hover{color: var(--accent-colour1); font-weight: 700;}
 
 .banner{
@@ -147,7 +170,7 @@ h1, h2, h3, h4{
     white-space: nowrap;
     margin: 0px;
     margin-bottom: .25em;
-    color: var(--colour-white);
+    color: var(--header-colour);
 
 }
 .weatherline{

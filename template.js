@@ -4,7 +4,7 @@ var root = getComputedStyle(document.documentElement);
 // consts
 var TILING_COUNT = 5;
 var POSTERS_COUNT = 2;
-var THEMES = ["default", "original", "autumn"];
+var THEMES = ["default", "original", "autumn", "winter"];
 
 if(document.addEventListener){
     document.addEventListener("DOMContentLoaded", loadLayout, false);

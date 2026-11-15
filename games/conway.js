@@ -18,6 +18,8 @@ var aliveColour = root.getPropertyValue('--accent-colour1').trim();
 window.deadColour = deadColour; window.aliveColour = aliveColour;
 
 window.page_init = function(){
+    deadColour = root.getPropertyValue('--bg-colour2').trim(); 
+    aliveColour = root.getPropertyValue('--accent-colour1').trim();
     var deadDropdown = document.getElementById("deadColour");
     var aliveDropdown = document.getElementById("aliveColour");
     utils.htmlColours.forEach(function(colour){

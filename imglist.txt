@@ -1,3 +1,5 @@
+/imgs/gallery/mj.png
+/imgs/gallery/rick.png
 /imgs/badges/github.png
 /imgs/posters/poster1.gif
 /imgs/posters/poster2.gif
