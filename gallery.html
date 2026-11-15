@@ -10,11 +10,18 @@
 <body>
 <div id="sharedLayout"> </div>
 <template id="pageTemplate">
+    <div id="headerDiv">
+        <br>
+        <img src="/imgs/gallery_header.gif" style="height: 5em; display:block; margin-left:auto; margin-right:auto; max-width:100%">
+        <p>What sort of vintage personal website doesn't have a collage of flashy images? <br>
+        Do as you will with the images below; see info for credits and attributions <a href="/credits.html"> here</a>.</a></p>
+        <p style="width:auto; border-top: 1px solid var(--colour-darkgrey);"></p>
+    </div>
     <div id="contentDiv"></div>
 </template>
 <style>
     #contentDiv{
-        columns: 8em;
+        columns: 7em;
         column-gap: 10px;
     }
     #contentDiv img {
@@ -23,6 +30,9 @@
         display: block;
         margin-bottom: 10px;
         break-inside: avoid;
+    }
+    a:visited, a:link, a, a:hover, a:active{
+        color: inherit;
     }
 </style>
 <script type="module" src = "/template.js"> </script>

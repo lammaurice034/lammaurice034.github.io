@@ -1,4 +1,3 @@
-/imgs/badges/CC_BY-NC-SA_icon_88x31.png
 /imgs/badges/github.png
 /imgs/posters/poster1.gif
 /imgs/posters/poster2.gif
