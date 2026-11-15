@@ -16,12 +16,11 @@ window.page_init = function(){
             img.style.cursor = clickHandler(src, false)?'pointer':'cursor';
             area.appendChild(img);
         }
-        document.getElementById("headerDiv").parentElement.style.background = 'linear-gradient(to bottom, #DDD, #ABC)';
+        //document.getElementById("headerDiv").parentElement.style.background = 'linear-gradient(to bottom, var(--accent-bg1), var(--colour-white))';
     });
 }
 
 window.clickHandler = function(src, enabled){ // return: only works if enabled=false
-    console.log(src);
     switch(src){
         case "/imgs/badges/github.png": 
             if(!enabled){return true;}

@@ -2,8 +2,9 @@ import * as utils from "/utils.js";
 var root = getComputedStyle(document.documentElement);
 
 // consts
-var tilingCount = 5;
-var posters = 2;
+var TILING_COUNT = 5;
+var POSTERS_COUNT = 2;
+var THEMES = ["default", "original", "autumn"];
 
 if(document.addEventListener){
     document.addEventListener("DOMContentLoaded", loadLayout, false);
@@ -27,6 +28,9 @@ function loadLayout() {
 export var minContentHeight = "";
 
 function template_init(){
+    window.setTheme = setTheme;
+    window.setNextTheme = setNextTheme;
+    setTheme(Number(localStorage.getItem("preferred-theme")) || 0);
     // spacing and stuff
     // var dpr = window.devicePixelRatio;
     // document.documentElement.style.zoom = (1/dpr).toString();
@@ -35,27 +39,7 @@ function template_init(){
     document.getElementById("headerBuffer").style.height = headerHeight+"px";
     document.getElementById("template_pageLayout").style.minHeight = "calc(100vh - " + (headerHeight+footerHeight) + "px)";
     minContentHeight = "calc(100vh - " + (headerHeight+footerHeight) + "px)";
-    var tileimg = new Image();
-    tileimg.src = "/imgs/tiling/tiling" + utils.randInt(1,tilingCount) + ".png";
-    tileimg.onload = function(){
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = tileimg.width;
-        canvas.height = tileimg.height;
-        utils.drawImg(ctx, tileimg, {x: 0, y: 0});
-        for(var i=0; i<canvas.width; i++){
-            for(var j=0; j<canvas.height; j++){
-                var px = utils.getPixelColour(ctx, {x:i, y:j});
-                if(px.r==255&&px.g==255&&px.b==255){
-                    utils.setDrawingColour(ctx, root.getPropertyValue('--colour-white').trim());
-                }else if(px.r==204&&px.g==204&&px.b==221){
-                    utils.setDrawingColour(ctx, root.getPropertyValue('--bg-colour-light').trim());
-                }
-                utils.drawPixel(ctx, {x:i, y:j});
-            }
-        }
-        document.body.style.backgroundImage = "url(" + canvas.toDataURL() + ")";
-    }
+    reset_tiling();
     // weather
     var template = document.getElementById("pageTemplate");
     if (template && document.getElementById("pageContent")) {
@@ -90,7 +74,7 @@ function template_init(){
         }
         var htmlString = "";
         if(a.dataset.img){
-            htmlString += '<img src=\"' + a.dataset.img+ '" style="width:' + imgwidth+';"></img>';
+            htmlString += '<img src=\"' + a.dataset.img+ '" style="width:' + imgwidth+'; min-width:' + imgwidth + ';"></img>';
         }
         htmlString += "<div style=\"width:.5em;\"></div>"
         + "<div style=\"height:stretch; padding-bottom: .5em;\"><h3><b>" + a.dataset.title 
@@ -98,10 +82,53 @@ function template_init(){
         a.insertAdjacentHTML("beforeend", htmlString);
     });
     // other stuff
-    addPoster(document.getElementById("template_sidebar_left"), "/imgs/posters/poster" + utils.randInt(1,posters) + ".gif", "90%");
+    addPoster(document.getElementById("template_sidebar_left"), "/imgs/posters/poster" + utils.randInt(1,POSTERS_COUNT) + ".gif", "90%");
     tick();
     setInterval(tick, 1000); //updates per 1000ms i.e. 1s
 }
+
+function reset_tiling(){
+    var tileimg = new Image();
+    tileimg.src = "/imgs/tiling/tiling" + utils.randInt(1,TILING_COUNT) + ".png";
+    tileimg.onload = function(){
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d", {willReadFrequently:true});
+        canvas.width = tileimg.width;
+        canvas.height = tileimg.height;
+        utils.drawImg(ctx, tileimg, {x: 0, y: 0});
+        for(var i=0; i<canvas.width; i++){
+            for(var j=0; j<canvas.height; j++){
+                var px = utils.getPixelColour(ctx, {x:i, y:j});
+                if(px.r==255&&px.g==255&&px.b==255){
+                    utils.setDrawingColour(ctx, root.getPropertyValue('--colour-white').trim());
+                }else if(px.r==204&&px.g==204&&px.b==221){
+                    utils.setDrawingColour(ctx, root.getPropertyValue('--bg-colour-light').trim());
+                }
+                utils.drawPixel(ctx, {x:i, y:j});
+            }
+        }
+        document.body.style.backgroundImage = "url(" + canvas.toDataURL() + ")";
+    }
+}
+
+export function setNextTheme(){
+    if(isNaN(localStorage.getItem("preferred-theme"))){}
+    if(Number(localStorage.getItem("preferred-theme"))==THEMES.length-1){setTheme(0);}
+    else{
+        setTheme(Number(localStorage.getItem("preferred-theme"))+1);
+    }
+}
+
+export function setTheme(idx){
+    if(THEMES[idx] === "default") {
+        document.documentElement.removeAttribute("data-theme");
+    }else{
+        document.documentElement.dataset.theme = THEMES[idx];
+    }
+    localStorage.setItem("preferred-theme", idx);
+    reset_tiling();
+}
+
 
 export function navToPath(path){
     path = path.replace(/\/+/g, "/");

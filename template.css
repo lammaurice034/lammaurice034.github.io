@@ -3,19 +3,56 @@
     --header-font: "Cambria", serif;
     --text-font: "Times New Roman", serif;
     --min-width: 36em;
-
+    /* leave bg colour 2 and accent colour 1 as a name */
+    --colour-white: white;
+    --colour-lightgrey:silver;
+    --colour-darkgrey: grey;
+    --colour-black: black;
+    --bg-colour1: darkorange;
+    --bg-colour1-tint: rgb(218, 94, 0);
+    --bg-colour2: chocolate; 
+    --bg-colour2-tint: brown; 
+    --bg-colour-light: Moccasin;
+    --bg-colour-lighter: rgb(255, 251, 245);
+    --accent-colour1: Turquoise; 
+    --accent-colour1-tint: cyan;
+    --accent-bg1: NavajoWhite;
+    --a-colour: dodgerblue;
+    --a-clicked: violet;
+}
+:root[data-theme="original"]{ /* leave bg colour 2 and accent colour 1 as a name */
     --colour-white: white;
     --colour-lightgrey: silver;
     --colour-darkgrey: slategrey;
     --colour-black: black;
     --bg-colour1: #124;
     --bg-colour1-tint: #018;
-    --bg-colour2: purple; /* leave bg colour 2 and its tint a colour in html, i.e. with a name*/
+    --bg-colour2: purple; 
     --bg-colour2-tint: slateblue; 
     --bg-colour-light: #ccd;
+    --bg-colour-lighter: #eef;
     --accent-colour1: gold;
     --accent-colour1-tint: yellow;
     --accent-bg1: #ffe;
+    --a-colour: blue;
+    --a-clicked: purple;
+}
+:root[data-theme="autumn"]{ /* leave bg colour 2 and accent colour 1 as a name */
+    --colour-white: white;
+    --colour-lightgrey:silver;
+    --colour-darkgrey: grey;
+    --colour-black: black;
+    --bg-colour1: darkorange;
+    --bg-colour1-tint: rgb(218, 94, 0);
+    --bg-colour2: chocolate; 
+    --bg-colour2-tint: brown; 
+    --bg-colour-light: Moccasin;
+    --bg-colour-lighter: rgb(255, 251, 245);
+    --accent-colour1: Turquoise; 
+    --accent-colour1-tint: cyan;
+    --accent-bg1: AliceBlue;
+    --a-colour: RoyalBlue;
+    --a-clicked: DarkMagenta;
 }
 
 html{
@@ -24,6 +61,13 @@ html{
     -moz-osx-font-smoothing: auto;  
     font-smooth: never;
     overflow-y: scroll;
+}
+
+a{
+    color: var(--a-colour);
+}
+a:visited{
+    color: var(--a-clicked);
 }
 
 button{
@@ -103,6 +147,8 @@ h1, h2, h3, h4{
     white-space: nowrap;
     margin: 0px;
     margin-bottom: .25em;
+    color: var(--colour-white);
+
 }
 .weatherline{
     position: relative;
@@ -164,6 +210,13 @@ a.itembox img{
     border:1px solid var(--colour-black); 
 }
 
+#pageContent{
+    background: linear-gradient(to bottom, var(--bg-colour-lighter), var(--colour-white));
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .pageLayout{
     min-width: fit-content;
     flex: 1;
@@ -172,7 +225,6 @@ a.itembox img{
     align-items: stretch;
     display: flex;
     justify-content: center;
-
 }
 .pageLayout .sidebar{
     display: flex;
