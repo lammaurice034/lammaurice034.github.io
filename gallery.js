@@ -24,7 +24,7 @@ window.clickHandler = function(src, enabled){ // return: only works if enabled=f
     switch(src){
         case "/imgs/badges/github.png": 
             if(!enabled){return true;}
-            window.open("https://github.com/lammaurice034/", '_blank').focus();
+            window.open("https://github.com/rice034/", '_blank').focus();
             break;
         case "/imgs/badges/blackjack.gif": 
             if(!enabled){return true;}
