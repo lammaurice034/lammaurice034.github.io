@@ -5,7 +5,7 @@ var ptrX = 128; var ptrY = 128;
 
 window.page_init = function(){
     var canvas = document.getElementById("canvas");
-    g = utils.imgGetGraphics(canvas);
+    g = utils.imgGetGraphics(canvas, true);
     canvas.addEventListener('click', function(event){
         var rect = canvas.getBoundingClientRect();
         var x = Math.floor((event.clientX-rect.left)*canvas.width/rect.width);

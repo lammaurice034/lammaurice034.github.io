@@ -414,8 +414,8 @@ export function newImg(width, height){
     canvas.height = height;
     return canvas;
 }
-export function imgGetGraphics(img){
-    return img.getContext("2d");
+export function imgGetGraphics(img, willReadFrequently=false){
+    return img.getContext("2d", {willReadFrequently:willReadFrequently});
 }
 
 export function isInTriangle(vertices, point){ // include points on the edge
