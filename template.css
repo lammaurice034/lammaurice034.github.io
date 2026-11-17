@@ -219,7 +219,7 @@ a.itembox{
     text-decoration: none;
     margin: .5em;
 }
-a.itembox:visited{
+a.itembox{
     color: var(--colour-black); 
     text-decoration: none;
 }
