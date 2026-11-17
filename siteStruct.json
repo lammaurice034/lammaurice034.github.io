@@ -16,7 +16,8 @@
         {"name": "games/", "contents":[
             {"name": "index.html", "displayName": "(Main page)"},
             {"name": "blackjack.html", "displayName": "Blackjack+"},
-            {"name": "conway.html", "displayName": "Conway's Game of Life"}
+            {"name": "conway.html", "displayName": "Conway's Game of Life"},
+            {"name": "sandwich.html", "displayName": "Sandwich Sim"}
         ], "displayName": "Games"},
         
         {"name": "index.html", "displayName": "(Main page)"},
