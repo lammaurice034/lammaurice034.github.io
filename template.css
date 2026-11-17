@@ -163,7 +163,7 @@ h1, h2, h3, h4{
     padding: 0px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     height: 100%;
 }
 .weatherbox p{
@@ -171,26 +171,28 @@ h1, h2, h3, h4{
     margin: 0px;
     margin-bottom: .25em;
     color: var(--header-colour);
-
 }
 .weatherline{
-    position: relative;
+    /*position: relative;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .weatherline img{
     z-index: 1;
-    position: absolute;
+    /*position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-100%, -15%);
+    transform: translate(-100%, -15%);*/
 }
 .weatherline p{
     -webkit-text-stroke: 1px var(--bg-colour1-tint);
     margin: 0;
-    position: relative;
+    /*position: relative;
     text-align:right;
-    transform: translate(0%, 50%);
+    transform: translate(0%, 50%);*/
     z-index: 2;
-    font-size: 32px; 
+    font-size: 2em; 
     font-weight: 700; 
 }
 .toplink{
